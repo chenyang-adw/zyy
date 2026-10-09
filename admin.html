@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>后台管理 · 钟意</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="admin-body">
+
+<header class="admin-bar">
+  <span class="admin-title">作品后台管理</span>
+  <span class="admin-user" id="admin-user"></span>
+  <a class="admin-link" href="index.html" target="_blank" rel="noopener">查看前台</a>
+  <button type="button" class="admin-link" id="logout-btn" hidden>退出</button>
+</header>
+
+<main class="admin-main">
+
+  <p class="msg" id="msg" hidden></p>
+
+  <!-- 登录 -->
+  <section class="panel" id="login-view" hidden>
+    <div class="tabs">
+      <button type="button" class="tab active" data-tab="password">密码登录</button>
+      <button type="button" class="tab" data-tab="signup">注册账号</button>
+      <button type="button" class="tab" data-tab="reset">找回密码</button>
+    </div>
+
+    <form class="form" id="form-password">
+      <label>邮箱<input type="email" id="pw-email" required autocomplete="username" placeholder="you@example.com"></label>
+      <label>密码<input type="password" id="pw-password" required autocomplete="current-password" placeholder="登录密码"></label>
+      <button type="submit" class="btn primary">登录</button>
+      <p class="hint">用你自己的邮箱注册一次，之后就能在任何地方登录后台。</p>
+    </form>
+
+    <form class="form" id="form-signup" hidden>
+      <label>邮箱<input type="email" id="su-email" required placeholder="you@example.com"></label>
+      <div class="inline">
+        <label class="grow">邮箱验证码<input type="text" id="su-code" inputmode="numeric" placeholder="6 位验证码"></label>
+        <button type="button" class="btn" id="su-send">获取验证码</button>
+      </div>
+      <label>设置密码<input type="password" id="su-password" required placeholder="至少 6 位"></label>
+      <button type="submit" class="btn primary">注册并登录</button>
+    </form>
+
+    <form class="form" id="form-reset" hidden>
+      <label>邮箱<input type="email" id="rs-email" required placeholder="you@example.com"></label>
+      <div class="inline">
+        <label class="grow">邮箱验证码<input type="text" id="rs-code" inputmode="numeric" placeholder="6 位验证码"></label>
+        <button type="button" class="btn" id="rs-send">获取验证码</button>
+      </div>
+      <label>新密码<input type="password" id="rs-password" required placeholder="至少 6 位"></label>
+      <button type="submit" class="btn primary">重置密码</button>
+    </form>
+  </section>
+
+  <!-- 管理 -->
+  <section class="panel" id="panel-view" hidden>
+    <div class="row-between">
+      <h2 class="panel-title">我的作品 <span class="count" id="site-count">0</span></h2>
+      <button type="button" class="btn primary" id="add-btn">新增作品</button>
+    </div>
+
+    <div class="admin-list" id="site-list"></div>
+
+    <section class="panel sub" id="edit-panel" hidden>
+      <h3 class="panel-title" id="edit-title">新增作品</h3>
+      <form class="form" id="form-site">
+        <label>作品名称<input type="text" id="f-name" required placeholder="卡密商城"></label>
+        <label>展示方式
+          <select id="f-kind">
+            <option value="link">跳转链接（填网址）</option>
+            <option value="upload">上传文件（程序包 / 图片）</option>
+          </select>
+        </label>
+        <label id="wrap-url">跳转链接<input type="url" id="f-url" placeholder="https://..."></label>
+        <label id="wrap-file" hidden>上传文件<input type="file" id="f-file"></label>
+        <p class="hint" id="file-hint" hidden>上传后卡片会指向云端文件；图片会自动作为卡片图标（建议小于 300KB）。</p>
+        <label>一句话简介<input type="text" id="f-summary" placeholder="虚拟卡密自动发货"></label>
+        <div class="inline">
+          <label class="grow">分类<input type="text" id="f-tag" placeholder="工具类"></label>
+          <label>卡片颜色<input type="color" id="f-color" value="#4f46e5"></label>
+        </div>
+        <label>排序（越小越靠前）<input type="number" id="f-sort" value="0"></label>
+        <div class="inline">
+          <button type="submit" class="btn primary" id="save-btn">保存</button>
+          <button type="button" class="btn" id="cancel-btn">取消</button>
+        </div>
+      </form>
+    </section>
+  </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"></script>
+<script src="assets/cloud-config.js"></script>
+<script src="assets/admin.js"></script>
+</body>
+</html>

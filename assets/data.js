@@ -1,0 +1,111 @@
+/* ============================================================
+ *  唯一需要你修改的文件：data.js
+ *  改完保存，刷新页面即可生效。
+ * ============================================================ */
+
+window.SITE_CONFIG = {
+  /* ---------- 1. 站点与个人信息 ---------- */
+  site: {
+    title: '钟意 · 作品导航',
+    name: '钟意',
+    tagline: 'Web 全栈开发工程师',
+    description: '钟意的个人主页，收录我做过的小工具、小游戏和实验项目，点开就能用。',
+    // 换成你自己的域名（不要带 https://，结尾不要斜杠）
+    domain: 'zhongyiya.cn',
+    // 头像：放一张图片到 assets/avatar.png，或留空自动用姓氏
+    avatar: '',
+    year: 2026
+  },
+
+  /* ---------- 2. 联系方式（不需要的就删掉整行） ----------
+   * 两种写法：
+   *   { label: 'GitHub', url: 'https://...' }            → 点击跳转
+   *   { label: '微信 zykkos', value: 'zykkos', copy: true } → 点击复制
+   */
+  contacts: [
+    { label: '微信 zykkos', value: 'zykkos', copy: true }
+  ],
+
+  /* ---------- 2.5 关于我页面 ---------- */
+  about: {
+    intro: '你好，我是钟意，一名 Web 全栈开发工程师。平时喜欢把想法直接做成能上线的成品，从页面交互到服务端接口、数据库和部署，一条龙自己搞定。这个页面收录了我做过的网站和小工具，点开就能用。',
+    skills: ['JavaScript / TypeScript', 'React / Vue', 'Node.js / Express', 'Python', 'MySQL / Redis', 'HTML / CSS', 'Docker / Nginx', 'Vercel / 云服务部署']
+  },
+
+  /* ---------- 3. 访问统计 ----------
+   * 默认用「不蒜子」，免注册，开箱即用。
+   * 想换成 Umami / 51.la：把 provider 改成 'umami' 并填入你的 ID 即可。
+   */
+  analytics: {
+    provider: 'busuanzi', // 'busuanzi' | 'umami' | 'none'
+    umamiId: '',          // 例：'a1b2c3d4-e5f6-7890-abcd-ef1234567890'
+    umamiHost: 'https://analytics.umami.is'
+  },
+
+  /* ---------- 4. 页脚 ---------- */
+  footer: {
+    icp: '',              // 例：'浙ICP备12345678号-1'（国内服务器必填）
+    extraLinks: []        // 例：[{ label: '友情链接', url: 'https://...' }]
+  },
+
+  /* ---------- 5. 你的网站清单（重点改这里） ----------
+   * 每个站点一个 {}，字段说明：
+   *   name  必填  显示名称
+   *   url   必填  跳转地址，必须以 http:// 或 https:// 开头
+   *   desc  选填  一句话简介（建议 20 字内）
+   *   tag   选填  分类，分类按钮会根据这里自动生成
+   *   icon  选填  卡片配图，留空则自动抓取该网站的 favicon
+   *             想用截图：把图片放进 assets/ 后填 'assets/xxx.png'
+   *   color 选填  卡片图标底色（十六进制），留空自动分配
+   */
+  sites: [
+    {
+      name: '卡密商城',
+      url: 'https://example.com/shop',
+      desc: '虚拟卡密自动发货',
+      tag: '商业项目',
+      icon: '',
+      color: '#4f46e5'
+    },
+    {
+      name: '待办清单',
+      url: 'https://example.com/todo',
+      desc: '极简任务管理',
+      tag: '工具类',
+      icon: '',
+      color: '#0f766e'
+    },
+    {
+      name: '贪吃蛇',
+      url: 'https://example.com/snake',
+      desc: '网页版小游戏',
+      tag: '小游戏',
+      icon: '',
+      color: '#b45309'
+    },
+    {
+      name: '天气卡片',
+      url: 'https://example.com/weather',
+      desc: '实时天气查询',
+      tag: '工具类',
+      icon: '',
+      color: '#185fa5'
+    },
+    {
+      name: '文字转语音',
+      url: 'https://example.com/tts',
+      desc: '在线朗读工具',
+      tag: '实验项目',
+      icon: '',
+      color: '#993556'
+    },
+    {
+      name: '个人简历页',
+      url: 'https://example.com/resume',
+      desc: '在线简历',
+      tag: '实验项目',
+      icon: '',
+      color: '#5f5e5a'
+    }
+  ]
+};

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>关于我 · 钟意</title>
+<meta name="description" content="钟意，Web 全栈开发工程师，喜欢把想法做成能上线的成品。">
+<meta name="author" content="钟意">
+<link rel="icon" href="assets/favicon.svg">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="关于我 · 钟意">
+<meta property="og:description" content="钟意，Web 全栈开发工程师，喜欢把想法做成能上线的成品。">
+<meta property="og:image" content="assets/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="avatar" id="avatar"></div>
+    <h1 id="hero-name"></h1>
+    <p class="tagline" id="hero-tagline"></p>
+    <nav class="contacts" id="contacts"></nav>
+  </div>
+</header>
+
+<main class="page">
+  <section class="block">
+    <h2>关于我</h2>
+    <p class="prose" id="about-intro"></p>
+  </section>
+
+  <section class="block">
+    <h2>技能栈</h2>
+    <div class="skill-tags" id="skills"></div>
+  </section>
+
+  <section class="block">
+    <h2>我的作品</h2>
+    <p class="prose">共 <b id="site-count">0</b> 个站点，<a href="index.html">去作品页看看</a>。</p>
+  </section>
+</main>
+
+<footer>
+  <p class="stats" id="stats"></p>
+  <p class="copyright" id="copyright"></p>
+  <p class="nav" id="nav"></p>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/common.js"></script>
+<script src="assets/cloud-config.js"></script>
+<script src="assets/about.js"></script>
+</body>
+</html>

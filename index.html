@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>钟意 · 作品导航</title>
+<meta name="description" content="钟意的个人主页，收录我做过的小工具、小游戏和实验项目，点开就能用。">
+<meta name="keywords" content="钟意,个人主页,作品集,网站导航,Web全栈开发">
+<meta name="author" content="钟意">
+<link rel="icon" href="assets/favicon.svg">
+
+<!-- SEO / 分享卡片 -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="钟意 · 作品导航">
+<meta property="og:description" content="钟意的个人主页，收录我做过的小工具、小游戏和实验项目，点开就能用。">
+<meta property="og:image" content="assets/og-cover.png">
+<meta property="og:site_name" content="钟意 · 作品导航">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="钟意 · 作品导航">
+<meta name="twitter:description" content="钟意的个人主页，收录我做过的小工具、小游戏和实验项目，点开就能用。">
+<meta name="twitter:image" content="assets/og-cover.png">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="avatar" id="avatar"></div>
+    <h1 id="hero-name"></h1>
+    <p class="tagline" id="hero-tagline"></p>
+    <nav class="contacts" id="contacts"></nav>
+  </div>
+</header>
+
+<main>
+  <div class="toolbar">
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
+      <input id="search" type="search" placeholder="搜索站点名称或简介…" autocomplete="off" aria-label="搜索站点">
+    </div>
+    <div class="filters" id="filters"></div>
+  </div>
+
+  <section class="grid" id="grid" aria-live="polite"></section>
+  <p class="empty" id="empty" hidden>没有匹配的站点</p>
+</main>
+
+<footer>
+  <p class="stats" id="stats"></p>
+  <p class="copyright" id="copyright"></p>
+  <p class="nav" id="nav"></p>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/common.js"></script>
+<script src="assets/cloud-config.js"></script>
+<script id="cloud-sdk" async src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
