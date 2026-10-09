@@ -13,7 +13,7 @@ window.SITE_CONFIG = {
     // 换成你自己的域名（不要带 https://，结尾不要斜杠）
     domain: 'zhongyiya.cn',
     // 头像：放一张图片到 assets/avatar.png，或留空自动用姓氏
-    avatar: '',
+    avatar: 'assets/avatar.jpg',
     year: 2026
   },
 
