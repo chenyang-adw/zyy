@@ -1,14 +1,16 @@
 /* ============================================================
- *  背景音乐：Web Audio 生成式轻音乐（零音频文件、零加载流量）
- *  - 打开页面立即尝试自动播放
- *  - 浏览器策略要求"用户首次交互后"才允许出声，被拦截时会在
- *    访客第一次点击/触摸/按键的瞬间自动开始（无需额外操作）
+ *  背景音乐：播放 assets/bgm-60s.mp3（真实音频文件）
+ *  - 打开页面立即尝试自动播放；被浏览器策略拦截时，会在访客
+ *    第一次点击/触摸/按键的瞬间自动开始（无需额外操作）
  *  - 右下角音符按钮可随时开关，静音偏好保存在 localStorage
+ *  - 片段时长 60 秒，循环播放，带淡入淡出
  * ============================================================ */
 (function () {
   'use strict';
 
   var STORE_KEY = 'pf-bgm';
+  var SRC = 'assets/bgm-60s.mp3';
+  var VOLUME = 0.55;          // 最终音量（0~1），别太吵
 
   /* ---------- 悬浮开关按钮 ---------- */
   var btn = document.createElement('button');
@@ -25,108 +27,64 @@
     '</svg>';
   document.body.appendChild(btn);
 
-  /* ---------- 音频引擎 ---------- */
-  var ctx = null, master = null, timer = null, playing = false, step = 0;
+  /* ---------- 音频与音量渐变 ---------- */
+  var audio = null;
+  var fadeTimer = null;
+  var playing = false;
 
-  // 和弦进行：Fmaj7 → G → Em7 → Am7，温柔不吵
-  var CHORDS = [
-    [349.23, 440.00, 523.25, 659.25],
-    [392.00, 493.88, 587.33, 698.46],
-    [329.63, 392.00, 493.88, 587.33],
-    [329.63, 440.00, 523.25, 659.25]
-  ];
-  // C 大调五声音阶高音区，随机拨弦用
-  var PLUCKS = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.5];
-
-  function ensureCtx() {
-    if (ctx) return true;
-    var AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) return false;
-    try { ctx = new AC(); } catch (e) { return false; }
-    master = ctx.createGain();
-    master.gain.value = 0.0001;
-    if (ctx.createDynamicsCompressor) {
-      var comp = ctx.createDynamicsCompressor();
-      master.connect(comp);
-      comp.connect(ctx.destination);
-    } else {
-      master.connect(ctx.destination);
-    }
+  function ensureAudio() {
+    if (audio) return true;
+    try {
+      audio = new Audio(SRC);
+      audio.loop = true;        // 60 秒片段循环播放
+      audio.preload = 'auto';
+      audio.volume = 0;
+      audio.addEventListener('error', function () {
+        playing = false;
+        btn.classList.add('off');
+      });
+    } catch (e) { return false; }
     return true;
   }
 
-  function env(g, t, attack, dur, peak) {
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(peak, t + attack);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-  }
-
-  function playNote(freq, t, dur, peak, type) {
-    var osc = ctx.createOscillator();
-    var g = ctx.createGain();
-    osc.type = type || 'sine';
-    osc.frequency.value = freq;
-    osc.connect(g);
-    g.connect(master);
-    env(g, t, 0.03, dur, peak);
-    osc.start(t);
-    osc.stop(t + dur + 0.1);
-  }
-
-  function playPad(freqs, t, dur) {
-    freqs.forEach(function (f, i) {
-      var osc = ctx.createOscillator();
-      var g = ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.value = f / 2;            // 低八度铺底
-      osc.detune.value = (i - 1.5) * 5;       // 轻微失谐让铺底更暖
-      osc.connect(g);
-      g.connect(master);
-      env(g, t, 1.4, dur, 0.05);
-      osc.start(t);
-      osc.stop(t + dur + 0.2);
-    });
-  }
-
-  // 一小节：一个和弦垫 + 随机散落的拨弦音
-  function bar() {
-    var t = ctx.currentTime + 0.05;
-    var chord = CHORDS[step % CHORDS.length];
-    playPad(chord, t, 6.5);
-    var n = 4 + Math.floor(Math.random() * 3);
-    for (var i = 0; i < n; i++) {
-      var f = PLUCKS[Math.floor(Math.random() * PLUCKS.length)];
-      playNote(f, t + i * (5.2 / n) + Math.random() * 0.3, 1.8, 0.04, 'triangle');
-    }
-    step++;
+  function fadeTo(target, ms, done) {
+    if (!audio) return;
+    if (fadeTimer) { clearInterval(fadeTimer); fadeTimer = null; }
+    var from = audio.volume;
+    var startedAt = Date.now();
+    fadeTimer = setInterval(function () {
+      var k = Math.min(1, (Date.now() - startedAt) / ms);
+      audio.volume = Math.max(0, Math.min(1, from + (target - from) * k));
+      if (k >= 1) {
+        clearInterval(fadeTimer);
+        fadeTimer = null;
+        if (done) done();
+      }
+    }, 40);
   }
 
   function start() {
-    if (!ensureCtx()) return;
-    if (ctx.state === 'suspended') ctx.resume();
-    playing = true;
-    btn.classList.add('on');
-    btn.classList.remove('off');
-    var now = ctx.currentTime;
-    master.gain.cancelScheduledValues(now);
-    master.gain.setValueAtTime(Math.max(master.gain.value, 0.0001), now);
-    master.gain.linearRampToValueAtTime(0.9, now + 1.6);   // 淡入
-    bar();
-    if (timer) clearInterval(timer);
-    timer = setInterval(function () { if (playing) bar(); }, 5200);
+    if (playing) return;
+    if (!ensureAudio()) return;
+    var p = audio.play();
+    var ok = function () {
+      playing = true;
+      btn.classList.add('on');
+      btn.classList.remove('off');
+      fadeTo(VOLUME, 1600);     // 淡入
+    };
+    var fail = function () {    // 被自动播放策略拦截
+      playing = false;
+      btn.classList.add('off');
+    };
+    if (p && p.then) { p.then(ok, fail); } else { ok(); }
   }
 
   function stop(persist) {
     playing = false;
     btn.classList.remove('on');
     btn.classList.add('off');
-    if (timer) { clearInterval(timer); timer = null; }
-    if (ctx && master) {
-      var now = ctx.currentTime;
-      master.gain.cancelScheduledValues(now);
-      master.gain.setValueAtTime(Math.max(master.gain.value, 0.0001), now);
-      master.gain.linearRampToValueAtTime(0.0001, now + 0.6);  // 淡出
-    }
+    if (audio) fadeTo(0, 600, function () { try { audio.pause(); } catch (e) {} });
     if (persist) { try { localStorage.setItem(STORE_KEY, 'off'); } catch (e) {} }
   }
 
@@ -146,7 +104,11 @@
   /* ---------- 启动策略：自动播 → 被拦截则首次交互自动开始 ---------- */
   function init() {
     if (isOff()) { btn.classList.add('off'); return; }   // 记住过静音：不自动播
-    if (ensureCtx() && ctx.state === 'running') { start(); return; }
+    btn.classList.add('off');                            // 待激活状态
+    if (!ensureAudio()) return;
+
+    start();                                             // 直接尝试自动播放
+
     var kick = function (e) {
       if (e && e.target && e.target.closest && e.target.closest('.bgm-toggle')) return;
       document.removeEventListener('pointerdown', kick);
@@ -157,7 +119,6 @@
     document.addEventListener('pointerdown', kick);
     document.addEventListener('touchstart', kick);
     document.addEventListener('keydown', kick);
-    btn.classList.add('off');   // 待激活状态
   }
 
   if (document.readyState === 'loading') {
