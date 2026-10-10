@@ -31,14 +31,16 @@
 
   var BL = 3;                                   // 星云团数
   var NEB = [
-    { c: [79, 70, 229], rx: 0.42, ry: 0.60, sx: 0.000026, sy: 0.000035, ph: 0.0 },
-    { c: [124, 58, 237], rx: 0.36, ry: 0.52, sx: 0.000019, sy: 0.000028, ph: 2.1 },
-    { c: [56, 189, 248], rx: 0.30, ry: 0.44, sx: 0.000031, sy: 0.000021, ph: 4.2 }
+    { c: [37, 99, 235], rx: 0.42, ry: 0.60, sx: 0.000026, sy: 0.000035, ph: 0.0 },    // 宝蓝
+    { c: [56, 189, 248], rx: 0.36, ry: 0.52, sx: 0.000019, sy: 0.000028, ph: 2.1 },   // 天蓝
+    { c: [30, 64, 175], rx: 0.30, ry: 0.44, sx: 0.000031, sy: 0.000021, ph: 4.2 }     // 深蓝
   ];
 
   var W = 0, H = 0, DPR = 1;
   var stars = [], meteors = [], raf = null, last = 0, visible = true;
   var nextMeteor = 0;
+  var lastFrameAt = 0;                                      // 看门狗：最后一次真正画帧的时间
+  var REDUCE_DIV = reduce ? 4 : 1;                          // 系统"减少动态效果"时放慢而不是冻结
 
   function rand(a, b) { return a + Math.random() * (b - a); }
 
@@ -105,10 +107,13 @@
   function draw(now) {
     var dt = last ? Math.min(50, now - last) : 16;
     last = now;
+    lastFrameAt = Date.now();
     var k = dt / 16;
     var night = host.classList.contains('night');
     var tints = night ? NIGHT_TINTS : LIGHT_TINTS;
     var i, s, m;
+
+    try {
 
     ctx.clearRect(0, 0, W, H);
 
@@ -120,7 +125,7 @@
         var cy = H * (0.35 + b.ry * Math.cos(now * b.sy + b.ph * 1.4));
         var rr = Math.max(W, H) * (night ? 0.42 : 0.34);
         var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, rr);
-        var a0 = night ? 0.20 : 0.075;
+        var a0 = night ? 0.15 : 0.075;
         g.addColorStop(0, 'rgba(' + b.c[0] + ',' + b.c[1] + ',' + b.c[2] + ',' + a0 + ')');
         g.addColorStop(0.55, 'rgba(' + b.c[0] + ',' + b.c[1] + ',' + b.c[2] + ',' + (a0 * 0.35).toFixed(3) + ')');
         g.addColorStop(1, 'rgba(' + b.c[0] + ',' + b.c[1] + ',' + b.c[2] + ',0)');
@@ -132,13 +137,11 @@
     /* 2) 星尘 */
     for (i = 0; i < stars.length; i++) {
       s = stars[i];
-      if (!reduce) {
-        s.x += s.vx * k;
-        s.y += s.vy * k;
-        if (s.x < -6) s.x = W + 6; else if (s.x > W + 6) s.x = -6;
-        if (s.y < -6) s.y = H + 6; else if (s.y > H + 6) s.y = -6;
-      }
-      var tw = reduce ? 1 : 0.45 + 0.55 * Math.sin(now * s.sp + s.ph);
+      s.x += s.vx * k / REDUCE_DIV;
+      s.y += s.vy * k / REDUCE_DIV;
+      if (s.x < -6) s.x = W + 6; else if (s.x > W + 6) s.x = -6;
+      if (s.y < -6) s.y = H + 6; else if (s.y > H + 6) s.y = -6;
+      var tw = reduce ? 0.9 : 0.45 + 0.55 * Math.sin(now * s.sp + s.ph);
       var a = Math.max(0, Math.min(1, s.a * tw));
       var t = tints[s.t % tints.length];
 
@@ -183,11 +186,21 @@
       }
     }
 
+    } catch (e) { /* 单帧异常不打断动画 */ }
+
     raf = visible ? requestAnimationFrame(draw) : null;
   }
 
   function start() { if (raf == null) { last = 0; raf = requestAnimationFrame(draw); } }
   function stop() { if (raf != null) { cancelAnimationFrame(raf); raf = null; } }
+
+  /* 看门狗：页面可见却 1.5 秒没画帧（被节流/异常打断）就自动重启 */
+  setInterval(function () {
+    if (document.hidden || !W || !H) return;
+    if (Date.now() - lastFrameAt > 1500) { last = 0; stop(); visible = true; start(); }
+  }, 1500);
+  window.addEventListener('focus', function () { if (!document.hidden) { visible = true; start(); } });
+  document.addEventListener('pointerdown', function () { if (!document.hidden) { visible = true; start(); } }, true);
 
   document.addEventListener('visibilitychange', function () {
     visible = !document.hidden;

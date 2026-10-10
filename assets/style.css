@@ -707,11 +707,11 @@ canvas.hero-fx    { z-index: 2; }   /* 粒子层（上层） */
  */
 .hero.night {
   background:
-    radial-gradient(120% 140% at 12% -15%, rgba(99, 102, 241, .40), transparent 62%),
-    radial-gradient(100% 120% at 88% -25%, rgba(236, 72, 153, .24), transparent 64%),
-    radial-gradient(120% 170% at 55% 125%, rgba(56, 189, 248, .18), transparent 66%),
-    linear-gradient(180deg, #1d2559 0%, #29326e 55%, #333d7d 100%);
-  border-bottom-color: rgba(255, 255, 255, .14);
+    radial-gradient(120% 140% at 12% -15%, rgba(29, 78, 216, .42), transparent 62%),
+    radial-gradient(100% 120% at 88% -25%, rgba(56, 189, 248, .18), transparent 64%),
+    radial-gradient(120% 170% at 55% 125%, rgba(12, 74, 175, .34), transparent 66%),
+    linear-gradient(180deg, #01040f 0%, #04102c 50%, #071a45 100%);
+  border-bottom-color: rgba(255, 255, 255, .12);
 }
 
 /* 底色变浅后，文字加重 + 轻微光晕，保证读得清 */

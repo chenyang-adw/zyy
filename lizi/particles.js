@@ -37,6 +37,8 @@
     : false;
 
   var W = 0, H = 0, DPR = 1, parts = [], raf = null, last = 0, visible = true;
+  var lastFrameAt = 0;                                      // 看门狗：最后一次真正画帧的时间
+  var REDUCE_DIV = reduce ? 4 : 1;                          // 系统"减少动态效果"时放慢而不是冻结
   var ptr = { x: -1e4, y: -1e4, on: false };
 
   function rand(a, b) { return a + Math.random() * (b - a); }
@@ -91,8 +93,11 @@
   function draw(now) {
     var dt = last ? Math.min(50, now - last) : 16;
     last = now;
+    lastFrameAt = Date.now();
     var k = dt / 16;
     var i, j, p, q, dx, dy, d, al;
+
+    try {
 
     ctx.clearRect(0, 0, W, H);
 
@@ -127,12 +132,10 @@
     for (i = 0; i < parts.length; i++) {
       p = parts[i];
 
-      if (!reduce) {
-        p.x += p.vx * k;
-        p.y += p.vy * k;
-        if (p.x < -24) p.x = W + 24; else if (p.x > W + 24) p.x = -24;
-        if (p.y < -24) p.y = H + 24; else if (p.y > H + 24) p.y = -24;
-      }
+      p.x += p.vx * k / REDUCE_DIV;
+      p.y += p.vy * k / REDUCE_DIV;
+      if (p.x < -24) p.x = W + 24; else if (p.x > W + 24) p.x = -24;
+      if (p.y < -24) p.y = H + 24; else if (p.y > H + 24) p.y = -24;
 
       if (ptr.on) {                                        // 被鼠标轻轻吸引
         dx = ptr.x - p.x; dy = ptr.y - p.y;
@@ -144,7 +147,7 @@
         }
       }
 
-      var tw = reduce ? 1 : 0.62 + 0.38 * Math.sin(now * 0.001 * p.sp + p.ph);
+      var tw = reduce ? 0.88 : 0.62 + 0.38 * Math.sin(now * 0.001 * p.sp + p.ph);
       var A = p.a * tw;
       var rr = p.r * 5.2;
 
@@ -159,11 +162,21 @@
       ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832); ctx.fill();
     }
 
+    } catch (e) { /* 单帧异常不打断动画 */ }
+
     raf = visible ? requestAnimationFrame(draw) : null;
   }
 
   function start() { if (raf == null) { last = 0; raf = requestAnimationFrame(draw); } }
   function stop() { if (raf != null) { cancelAnimationFrame(raf); raf = null; } }
+
+  /* 看门狗：页面可见却 1.5 秒没画帧（被节流/异常打断）就自动重启 */
+  setInterval(function () {
+    if (document.hidden || !W || !H) return;
+    if (Date.now() - lastFrameAt > 1500) { last = 0; stop(); visible = true; start(); }
+  }, 1500);
+  window.addEventListener('focus', function () { if (!document.hidden) { visible = true; start(); } });
+  document.addEventListener('pointerdown', function () { if (!document.hidden) { visible = true; start(); } }, true);
 
   /* 鼠标 / 触摸交互 */
   function move(e) {
