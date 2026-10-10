@@ -22,63 +22,59 @@ Web 全栈开发工程师的个人主页：展示作品清单，点卡片跳转�
 
 ---
 
-## 上线三步走（腾讯云 EdgeOne Pages + 阿里云域名）
+## 部署（推荐：Git 仓库自动部署）
 
-> 你的域名还没备案，所以加速区域要选 **「全球可用区（不含中国大陆）」**，
-> 这个区域绑定自定义域名**不需要备案**。等以后备案完成，可在项目设置里切成
-> 「全球可用区（含中国大陆）」，国内速度会再上一个台阶。
+> 域名未备案，加速区域必须选 **「全球可用区（不含中国大陆）」**，该区域绑定自定义域名**不需要备案**。备案完成后可在项目设置切换为含中国大陆区域。
 
-### 第 1 步：安装 CLI 并登录
+### 方式一：导入 Git 仓库（推荐 · push 自动部署）★
+
+仓库 `chenyang-adw/zyy` 已是公开仓库、`main` 为最新代码（已确认），可直接连。
+
+1. [EdgeOne Pages 控制台](https://console.edgeone.ai/) → **Pages → 创建项目 → 导入 Git 仓库**
+2. 点 **GitHub** 连接 → 跳 GitHub 点 **Authorize EO Pages** → 选 `chenyang-adw/zyy`（或授权全部）→ **Install**
+   - ⚠️ 这是 GitHub 授权，需你本人点一下，AI 无法代授权
+3. 构建配置（关键，照填）：
+   - 仓库 `chenyang-adw/zyy`，分支 `main`
+   - 根目录 `./`（代码就在仓库根）
+   - 框架预设：**无 / None**（无 package.json，纯静态）
+   - 构建命令：**留空**
+   - 输出目录：**留空**（直接用根目录静态文件）
+   - 加速区域：**全球可用区（不含中国大陆）**
+   - 项目名称：`zhongyi-portfolio`
+4. 点 **开始部署**，几分钟完成
+
+⚠️ **关键提醒**：你之前「直接上传」创建的旧项目**不能**转成 Git 集成，所以这是**新项目**。
+旧项目绑定的 `zhongyiya.cn` 要按下面步骤重新绑到新项目，并且**阿里云 DNS 的 CNAME 值必须改成新项目给的值**，否则域名仍指向旧项目。
+
+### 绑定 / 重新绑定 zhongyiya.cn
+
+1. 新项目 → **项目设置 → 域名管理 → 添加自定义域名**，填 `zhongyiya.cn`（要 www 再加 `www.zhongyiya.cn`），勾选**自动生成免费证书**
+2. 页面给出新 **CNAME 值** → 阿里云控制台 → **云解析 DNS** → `zhongyiya.cn` → 把 `@` 的 CNAME 记录值**改成新值**（www 同理）
+3. 回 EdgeOne 点**验证** → 部署免费证书 → 几分钟后 `https://zhongyiya.cn` 生效。旧项目可保留或删除，不影响
+
+✅ 之后每次 `git push origin main` 自动重新部署，不再手动传包。
+
+### 方式二：保留旧项目 + GitHub Actions（不想改 DNS 时用）
+
+不想动阿里云 DNS，就用 API Token 把代码部署到**现有**项目（保留已绑域名）：
+
+1. EdgeOne 控制台 → 头像 → **API 令牌** → 新建，复制 `EDGEONE_API_TOKEN`
+2. GitHub 仓库 → **Settings → Secrets → Actions → New repository secret**，Name=`EDGEONE_API_TOKEN`，值=令牌
+3. 仓库根放 `.github/workflows/deploy.yml`（可让 AI 帮你写并提交）
+4. 以后 push 自动部署到现有项目
+
+### 方式三：CLI 手动部署（兜底）
 
 ```bash
 npm install -g edgeone
 cd C:/Users/17733/WorkBuddy/2026-10-10-05-34-29/portfolio
-edgeone login          # 会打开浏览器，扫码登录腾讯云
-```
-
-### 第 2 步：一键部署
-
-```bash
+edgeone login
 edgeone pages deploy . --name zhongyi-portfolio -e production
 ```
 
-静态文件就在项目根目录，所以目录参数直接写 `.`。  
-`edge-functions/api/sites.js` 会被平台自动识别成边缘函数（对应 `/api/sites`），无需额外配置。
-
-> 部署成功后会得到一个 `xxx.edgeone.run` 的项目域名。⚠️ 这个域名**带鉴权、
-> 链接 3 小时过期**，且中国大陆网络访问会返回 401 —— 它只是给你预览用的，
-> 真正对外访问必须走第 3 步的自定义域名。
-
-<details>
-<summary>替代方案：用 Git 仓库导入（想以后 push 自动重新部署就用这个）</summary>
-
-1. 在 GitHub / Gitee / CNB 建一个空仓库，推送代码：
-
-```bash
-git remote add origin https://github.com/<你的用户名>/<仓库名>.git
-git branch -M main
-git push -u origin main
-```
-
-2. EdgeOne 控制台 → **Pages → 创建项目 → 导入 Git 仓库** → 选中该仓库 → 确认
-3. 以后每次 push 都会自动重新部署
-
-</details>
-
-### 第 3 步：绑定 zhongyiya.cn（阿里云解析）
-
-1. EdgeOne 控制台 → 你的 Pages 项目 → **项目设置 → 域名管理 → 添加自定义域名**
-2. 输入 `zhongyiya.cn`（想带 www 就再添加一条 `www.zhongyiya.cn`），勾选**自动生成免费证书**
-3. 页面会给出一组 **主机记录** 和 **记录值**，去阿里云控制台 → **云解析 DNS** →
-   `zhongyiya.cn` → **添加记录**：
-
-| 记录类型 | 主机记录 | 记录值 |
-|---------|---------|--------|
-| CNAME   | `@`（或页面给的主机记录） | 页面给的 CNAME 值 |
-| CNAME   | `www`   | 页面给的 CNAME 值 |
-
-4. 回到 EdgeOne 点**验证**，验证通过后会部署免费 SSL 证书，几分钟后
-   `https://zhongyiya.cn` 就能访问了
+`edge-functions/api/sites.js` 会被自动识别为边缘函数（对应 `/api/sites`）。
+部署后会得到 `xxx.edgeone.run` 预览域名（带鉴权、3 小时过期，**不能**当正式访问用）。
+自定义域名绑定同上「绑定 zhongyiya.cn」。
 
 ---
 
