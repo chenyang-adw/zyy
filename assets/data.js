@@ -28,8 +28,8 @@ window.SITE_CONFIG = {
 
   /* ---------- 2.5 关于我页面 ---------- */
   about: {
-    intro: '你好，我是钟意，一名 Web 全栈开发工程师。平时喜欢把想法直接做成能上线的成品，从页面交互到服务端接口、数据库和部署，一条龙自己搞定。这个页面收录了我做过的网站和小工具，点开就能用。',
-    skills: ['JavaScript / TypeScript', 'React / Vue', 'Node.js / Express', 'Python', 'MySQL / Redis', 'HTML / CSS', 'Docker / Nginx', 'Vercel / 云服务部署']
+    intro: '你好，我是钟意，一名 Web 全栈开发工程师。熟练掌握 React、Python、Java、MySQL、CI/CD、Docker 等技术栈；可定制网页与网站，开发小程序、小游戏及各类应用程序，从需求梳理到上线部署一条龙独立完成。只有你想不到，没有我做不到。',
+    skills: ['JavaScript / TypeScript', 'React / Vue', 'Node.js / Express', 'Python', 'Java', 'MySQL / Redis', 'Docker / Nginx', 'CI/CD', 'HTML / CSS', 'Vercel / 云服务部署']
   },
 
   /* ---------- 3. 访问统计 ----------
