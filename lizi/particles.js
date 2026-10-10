@@ -32,9 +32,8 @@
   ];
   var LINK_DIST = 112;
   var CURSOR_DIST = 150;
-  var reduce = window.matchMedia
-    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    : false;
+  // 说明：不再因为系统"减少动态效果"而降速/关闭动效（用户要求页面动起来）
+  var reduce = false;
 
   var W = 0, H = 0, DPR = 1, parts = [], raf = null, last = 0, visible = true;
   var lastFrameAt = 0;                                      // 看门狗：最后一次真正画帧的时间
@@ -49,13 +48,13 @@
     return {
       x: Math.random() * W,
       y: Math.random() * H,
-      vx: rand(-0.17, 0.17),
-      vy: rand(-0.20, 0.14),
+      vx: rand(-0.42, 0.42),
+      vy: rand(-0.48, 0.34),
       r: big ? rand(2.0, 3.4) : rand(0.9, 1.8),
       c: c,
       a: rand(0.35, 0.85),
       ph: Math.random() * 6.2832,
-      sp: rand(0.6, 1.8)
+      sp: rand(0.9, 2.6)
     };
   }
 
@@ -91,7 +90,7 @@
   }
 
   function draw(now) {
-    var dt = last ? Math.min(50, now - last) : 16;
+    var dt = last ? Math.min(100, now - last) : 16;      // 上限放宽，低帧率时动作也不会变慢
     last = now;
     lastFrameAt = Date.now();
     var k = dt / 16;

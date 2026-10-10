@@ -21,9 +21,8 @@
   var ctx = canvas.getContext('2d');
 
   var PREF = { density: 1, nebula: true, meteors: true };
-  var reduce = window.matchMedia
-    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    : false;
+  // 说明：不再因为系统"减少动态效果"而降速/关闭流星（用户要求页面动起来）
+  var reduce = false;
 
   // 浅色底：冷色星尘；深色底：偏白的真实星色
   var LIGHT_TINTS = [[79, 70, 229], [124, 58, 237], [56, 189, 248], [219, 39, 119], [255, 255, 255]];
@@ -52,9 +51,9 @@
       r: big ? rand(0.72, 1.0) : rand(0.14, 0.46),         // 微小的光点：核心极小
       a: big ? rand(0.55, 0.95) : rand(0.22, 0.72),
       ph: Math.random() * 6.2832,
-      sp: rand(0.5, 2.2) / 1000,
-      vx: rand(-0.055, 0.02),
-      vy: rand(-0.045, 0.02),
+      sp: rand(0.9, 3.0) / 1000,
+      vx: rand(-0.15, 0.06),
+      vy: rand(-0.13, 0.06),
       t: (Math.random() * 5) | 0,
       big: big
     };
@@ -92,20 +91,20 @@
 
   function spawnMeteor() {
     var fromLeft = Math.random() < 0.6;
-    var sp = rand(6.2, 11.5);                              // 速度更快
+    var sp = rand(9, 16);                                  // 速度更快
     meteors.push({
       x: fromLeft ? rand(-0.1 * W, 0.55 * W) : rand(0.5 * W, 1.05 * W),
       y: rand(-0.05 * H, 0.42 * H),
       vx: fromLeft ? sp : -sp,
       vy: sp * rand(0.32, 0.6),
-      len: rand(70, 150),
+      len: rand(80, 170),
       life: 0,
-      life0: rand(430, 700)
+      life0: rand(380, 620)
     });
   }
 
   function draw(now) {
-    var dt = last ? Math.min(50, now - last) : 16;
+    var dt = last ? Math.min(100, now - last) : 16;      // 上限放宽，低帧率时动作也不会变慢
     last = now;
     lastFrameAt = Date.now();
     var k = dt / 16;
@@ -161,8 +160,8 @@
     /* 3) 流星 */
     if (PREF.meteors && !reduce) {
       if (now > nextMeteor) {
-        if (meteors.length < 3) spawnMeteor();             // 最多同时 3 颗（原来 1 颗）
-        nextMeteor = now + rand(1600, 4200);               // 出现更频繁
+        if (meteors.length < 4) spawnMeteor();             // 最多同时 4 颗
+        nextMeteor = now + rand(600, 1700);                // 出现更频繁
       }
       for (i = meteors.length - 1; i >= 0; i--) {
         m = meteors[i];
