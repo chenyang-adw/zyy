@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="classic">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>贪吃蛇 · Snake</title>
+<meta name="description" content="轻量纯净的网页版贪吃蛇：自由行走、虚拟摇杆、多套皮肤、自适应难度。">
+<meta name="theme-color" content="#0b1220">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-512.png">
+<link rel="stylesheet" href="style.css">
+<script>
+/* 在首帧之前就把保存的皮肤应用上，避免加载瞬间闪一下默认色 */
+(function () {
+  try {
+    var t = localStorage.getItem('snake.theme');
+    if (t) document.documentElement.dataset.theme = t;
+    var q = location.search;
+    var m = /[?&]theme=([a-z]+)/.exec(q);
+    if (m) document.documentElement.dataset.theme = m[1];
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="head">
+    <h1>贪吃蛇</h1>
+    <p class="sub">电脑：鼠标移动转向 / 方向键 · 手机：按住棋盘拖动出现摇杆 · 空格暂停</p>
+  </header>
+
+  <!-- 皮肤 -->
+  <section class="row">
+    <span class="row-label">皮肤</span>
+    <div class="chips" id="skins"></div>
+  </section>
+
+  <!-- 难度 -->
+  <section class="row">
+    <span class="row-label">难度</span>
+    <div class="chips" id="levels"></div>
+    <label class="switch" title="撞墙不死，从另一侧穿过去">
+      <input type="checkbox" id="wrapToggle">
+      <span>穿墙</span>
+    </label>
+  </section>
+
+  <!-- 数据 -->
+  <section class="stats">
+    <div class="stat"><span class="k">分数</span><b id="score">0</b></div>
+    <div class="stat"><span class="k">最高</span><b id="best">0</b></div>
+    <div class="stat"><span class="k">长度</span><b id="len">3</b></div>
+    <div class="stat"><span class="k">速度</span><b id="speed">6.0</b><i>格/秒</i></div>
+  </section>
+
+  <!-- 棋盘 -->
+  <section class="stage">
+    <canvas id="board" aria-label="贪吃蛇游戏区"></canvas>
+
+    <div class="overlay" id="overlay">
+      <div class="ov-card">
+        <p class="ov-title" id="ovTitle">准备好了吗？</p>
+        <p class="ov-sub" id="ovSub">吃掉光点会变长，别撞墙、别咬到自己</p>
+        <button type="button" class="btn primary" id="ovBtn">开始游戏</button>
+        <p class="ov-tip" id="ovTip"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 操作 -->
+  <section class="row actions">
+    <button type="button" class="btn" id="pauseBtn">暂停</button>
+    <button type="button" class="btn" id="restartBtn">重开</button>
+    <button type="button" class="btn ghost" id="soundBtn" title="音效开关">音效：关</button>
+    <button type="button" class="btn ghost" id="sizeBtn" title="在“大棋盘”和“一屏放下”之间切换">棋盘：大</button>
+  </section>
+
+  <footer class="foot">
+    <span id="footNote">自适应难度：根据你的表现自动调速</span>
+  </footer>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

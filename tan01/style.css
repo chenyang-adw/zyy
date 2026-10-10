@@ -1,0 +1,318 @@
+/* ============================================================
+ *  贪吃蛇 · 样式（皮肤全部由 CSS 变量驱动，切换只换 data-theme）
+ * ============================================================ */
+
+* { box-sizing: border-box; }
+
+:root {
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 12px 30px rgba(0, 0, 0, .18);
+  --font: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+/* ---------- 皮肤 1：经典 ---------- */
+html[data-theme="classic"] {
+  --page-bg: #0b1220;
+  --panel: #121c30;
+  --panel-2: #18243d;
+  --line: rgba(255, 255, 255, .10);
+  --text: #e6ecf8;
+  --muted: #93a1bd;
+  --accent: #22c55e;
+  --accent-2: #4ade80;
+  --board-bg: #0e1729;
+  --grid: rgba(255, 255, 255, .045);
+  --snake: #22c55e;
+  --snake-head: #86efac;
+  --food: #f43f5e;
+  --chip-fg: #052e16;
+}
+
+/* ---------- 皮肤 2：霓虹 ---------- */
+html[data-theme="neon"] {
+  --page-bg: #0a0618;
+  --panel: #150d2b;
+  --panel-2: #1d1240;
+  --line: rgba(255, 255, 255, .12);
+  --text: #f2e9ff;
+  --muted: #a795c9;
+  --accent: #22d3ee;
+  --accent-2: #f472b6;
+  --board-bg: #0d0722;
+  --grid: rgba(255, 255, 255, .05);
+  --snake: #22d3ee;
+  --snake-head: #a5f3fc;
+  --food: #f472b6;
+  --chip-fg: #052b33;
+}
+
+/* ---------- 皮肤 3：复古（GameBoy 米黄） ---------- */
+html[data-theme="pixel"] {
+  --page-bg: #d9d3b4;
+  --panel: #e8e3c6;
+  --panel-2: #f1ecd5;
+  --line: rgba(60, 55, 30, .18);
+  --text: #3b3b22;
+  --muted: #7d7a58;
+  --accent: #4b7f2a;
+  --accent-2: #6aa63f;
+  --board-bg: #cfc9a6;
+  --grid: rgba(60, 55, 30, .10);
+  --snake: #3f6b22;
+  --snake-head: #6aa63f;
+  --food: #9b2c2c;
+  --chip-fg: #ffffff;
+}
+
+/* ---------- 皮肤 4：糖果 ---------- */
+html[data-theme="candy"] {
+  --page-bg: #fff1f7;
+  --panel: #ffffff;
+  --panel-2: #ffe6f2;
+  --line: rgba(190, 100, 160, .20);
+  --text: #4a2440;
+  --muted: #9c6b8c;
+  --accent: #ec4899;
+  --accent-2: #a855f7;
+  --board-bg: #fff6fb;
+  --grid: rgba(190, 100, 160, .10);
+  --snake: #a855f7;
+  --snake-head: #d8b4fe;
+  --food: #fb7185;
+  --chip-fg: #ffffff;
+}
+
+/* ---------- 皮肤 5：极简白 ---------- */
+html[data-theme="mono"] {
+  --page-bg: #f6f7f9;
+  --panel: #ffffff;
+  --panel-2: #f1f3f6;
+  --line: rgba(20, 25, 40, .12);
+  --text: #14192b;
+  --muted: #6b7280;
+  --accent: #4f46e5;
+  --accent-2: #7c3aed;
+  --board-bg: #ffffff;
+  --grid: rgba(20, 25, 40, .06);
+  --snake: #2f3542;
+  --snake-head: #4f46e5;
+  --food: #e11d48;
+  --chip-fg: #ffffff;
+}
+
+/* ---------- 皮肤 6：午夜金 ---------- */
+html[data-theme="aurum"] {
+  --page-bg: #0d0d0f;
+  --panel: #16161a;
+  --panel-2: #1f1f24;
+  --line: rgba(255, 255, 255, .10);
+  --text: #f4efe6;
+  --muted: #9a9382;
+  --accent: #eab308;
+  --accent-2: #facc15;
+  --board-bg: #101013;
+  --grid: rgba(255, 255, 255, .05);
+  --snake: #d4a017;
+  --snake-head: #facc15;
+  --food: #ef4444;
+  --chip-fg: #2a1d00;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  padding: 14px 14px 18px;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-text-size-adjust: 100%;
+  transition: background .25s ease, color .25s ease;
+}
+
+.wrap { max-width: 1000px; margin: 0 auto; }
+
+/* ---------- 标题 ---------- */
+.head { text-align: center; margin-bottom: 10px; }
+
+.head h1 {
+  margin: 0;
+  font-size: 23px;
+  letter-spacing: .02em;
+  font-weight: 800;
+}
+
+.head .sub {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ---------- 行 + 胶囊按钮 ---------- */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.row-label {
+  font-size: 12.5px;
+  color: var(--muted);
+  min-width: 30px;
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.chip {
+  font-family: inherit;
+  font-size: 12.5px;
+  line-height: 1;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color .16s ease, border-color .16s ease, background .16s ease, transform .16s ease;
+}
+
+.chip:hover { color: var(--text); transform: translateY(-1px); }
+
+.chip[aria-pressed="true"] {
+  color: var(--chip-fg, #fff);
+  font-weight: 600;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+}
+
+.chip .dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: -1px;
+  background: var(--swatch, var(--accent));
+}
+
+/* 开关 */
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  font-size: 12.5px;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.switch input { accent-color: var(--accent); width: 15px; height: 15px; }
+
+/* ---------- 数据卡 ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 10px 0 8px;
+}
+
+.stat {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 7px 10px;
+  text-align: center;
+}
+
+.stat .k { display: block; font-size: 11.5px; color: var(--muted); }
+.stat b { font-size: 18px; font-weight: 700; letter-spacing: .01em; }
+.stat i { font-size: 10.5px; font-style: normal; color: var(--muted); margin-left: 2px; }
+
+/* ---------- 棋盘 ---------- */
+.stage {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  /* 实际尺寸由 JS 按“屏幕剩余高度”算好写入 width，这里只做兜底 */
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--board-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: background .25s ease, border-color .25s ease;
+}
+
+#board { display: block; width: 100%; height: 100%; touch-action: none; }
+
+/* 覆盖层 */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: color-mix(in srgb, var(--board-bg) 82%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition: opacity .2s ease, visibility .2s ease;
+}
+
+.overlay[hidden] { display: none; }
+
+.ov-card { text-align: center; max-width: 320px; }
+.ov-title { margin: 0 0 6px; font-size: 18px; font-weight: 700; }
+.ov-sub { margin: 0 0 14px; font-size: 12.5px; color: var(--muted); line-height: 1.7; }
+.ov-tip { margin: 12px 0 0; font-size: 11.5px; color: var(--muted); min-height: 14px; }
+
+/* ---------- 按钮 ---------- */
+.btn {
+  font-family: inherit;
+  font-size: 13.5px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform .16s ease, box-shadow .16s ease, opacity .16s ease, background .16s ease;
+}
+
+.btn:hover { transform: translateY(-1px); }
+
+.btn.primary {
+  border-color: transparent;
+  color: #fff;
+  font-weight: 600;
+  padding: 11px 22px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.btn.ghost { color: var(--muted); }
+
+.actions { justify-content: center; margin-top: 10px; }
+
+/* ---------- 页脚 ---------- */
+.foot {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+@media (max-width: 420px) {
+  .head h1 { font-size: 22px; }
+  .stat b { font-size: 17px; }
+  .row-label { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

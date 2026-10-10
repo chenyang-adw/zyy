@@ -76,6 +76,14 @@ window.SITE_CONFIG = {
       tag: '小游戏',
       icon: 'assets/icon-meal.svg',
       color: '#FF6B35'
+      },
+      {
+        name: '贪吃蛇',
+        url: 'tan01/',
+        desc: '自由行走 · 摇杆操作 · 多皮肤',
+        tag: '小游戏',
+        icon: 'tan01/icon.svg',
+        color: '#22c55e'
     }
   ]
 };
