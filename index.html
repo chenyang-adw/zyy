@@ -25,7 +25,9 @@
 </head>
 <body>
 
-<header class="hero">
+<header class="hero night">
+  <canvas class="hero-stars" aria-hidden="true"></canvas>
+  <canvas class="hero-fx" aria-hidden="true"></canvas>
   <div class="hero-inner">
     <div class="avatar" id="avatar"></div>
     <div class="hero-info">
@@ -57,6 +59,8 @@
 
 <script src="assets/data.js"></script>
 <script src="assets/common.js"></script>
+<script src="lizi/stars.js"></script>
+<script src="lizi/particles.js"></script>
 <script src="assets/bgm.js"></script>
 <script src="assets/cloud-config.js"></script>
 <script id="cloud-sdk" async src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"></script>

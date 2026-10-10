@@ -666,3 +666,81 @@ footer p { margin: 0; font-size: 13px; color: var(--faint); }
   * { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
 }
+
+/* ============================================================
+   顶部光效层：星空（底层）+ 粒子（上层）
+   脚本在 lizi/stars.js 与 lizi/particles.js
+   ============================================================ */
+.hero { position: relative; overflow: hidden; }
+
+/* canvas 是「替换元素」，必须显式给 100% 宽高，否则会退回默认 300x150 */
+canvas.hero-stars,
+canvas.hero-fx {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; display: block;
+}
+canvas.hero-stars { z-index: 1; }   /* 星空层（底层） */
+canvas.hero-fx    { z-index: 2; }   /* 粒子层（上层） */
+.hero-inner       { position: relative; z-index: 3; }
+
+/* ---------- 联系方式按钮：加底色更突出 ---------- */
+.hero .contacts a,
+.hero .contacts .copy-btn {
+  color: #fff;
+  font-weight: 600;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  border-color: transparent;
+  box-shadow: 0 6px 16px rgba(79, 70, 229, .28);
+}
+
+.hero .contacts a:hover,
+.hero .contacts .copy-btn:hover {
+  color: #fff;
+  border-color: transparent;
+  transform: translateY(-1px);
+  box-shadow: 0 9px 22px rgba(79, 70, 229, .38);
+}
+
+/* ---------- 夜空底（.hero.night）：星空效果最好的底 ----------
+ * 不想要深色头部的话，把 index.html 里 <header class="hero night">
+ * 的 night 去掉即可，正文样式完全不受影响。
+ */
+.hero.night {
+  background:
+    radial-gradient(120% 140% at 12% -15%, rgba(99, 102, 241, .40), transparent 62%),
+    radial-gradient(100% 120% at 88% -25%, rgba(236, 72, 153, .24), transparent 64%),
+    radial-gradient(120% 170% at 55% 125%, rgba(56, 189, 248, .18), transparent 66%),
+    linear-gradient(180deg, #1d2559 0%, #29326e 55%, #333d7d 100%);
+  border-bottom-color: rgba(255, 255, 255, .14);
+}
+
+/* 底色变浅后，文字加重 + 轻微光晕，保证读得清 */
+.hero.night h1 {
+  color: #ffffff;
+  font-weight: 800;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, .50), 0 0 26px rgba(165, 180, 252, .30);
+}
+
+.hero.night .tagline {
+  color: rgba(231, 235, 255, .88);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, .38);
+}
+
+.hero.night .tagline-main {
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, .45);
+}
+
+.hero.night .avatar {
+  border-color: rgba(255, 255, 255, .9);
+  box-shadow: 0 0 0 2px rgba(129, 140, 248, .40), 0 14px 34px rgba(0, 0, 0, .50);
+}
+
+.hero.night .contacts a,
+.hero.night .contacts .copy-btn {
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  border-color: rgba(255, 255, 255, .28);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(99, 102, 241, .45);
+}
