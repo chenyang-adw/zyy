@@ -10,7 +10,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'assets', 'og-cover.png')
 
 TITLE = '钟意 · 作品导航'
-SUB = 'Web 全栈开发工程师 · 收录我做过的小工具、小游戏和实验项目'
+SUB = 'Web 全栈开发工程师 · 网页 / 小程序 / 小游戏 / 应用定制'
 DOMAIN = 'zhongyiya.cn'
 
 BG = (251, 251, 252)

@@ -47,7 +47,15 @@
     }
 
     $('hero-name').textContent = site.name || '';
-    $('hero-tagline').textContent = site.tagline || '';
+    const tagEl = $('hero-tagline');
+    const lines = String(site.tagline || '').split('\n').map((l) => l.trim()).filter(Boolean);
+    if (lines.length > 1) {
+      tagEl.innerHTML =
+        '<span class="tagline-main">' + esc(lines[0]) + '</span>' +
+        lines.slice(1).map((l) => '<span class="tagline-sub">' + esc(l) + '</span>').join('');
+    } else {
+      tagEl.textContent = site.tagline || '';
+    }
 
     PF.renderContacts($('contacts'), cfg.contacts);
   }

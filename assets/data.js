@@ -8,7 +8,7 @@ window.SITE_CONFIG = {
   site: {
     title: '钟意 · 作品导航',
     name: '钟意',
-    tagline: 'Web 全栈开发工程师&掌握React、Python、Java、MySQL、CI/CD、Docker 等技术栈/网页 / 小程序 / 小游戏 / 应用定制，只有你想不到，没有我做不到',
+    tagline: 'Web 全栈开发工程师\n掌握 React / Python / Java / MySQL / CI/CD / Docker\n网页 · 小程序 · 小游戏 · 应用定制\n只有你想不到，没有我做不到',
     description: '钟意的个人主页，收录我做过的小工具、小游戏和实验项目，点开就能用。',
     // 换成你自己的域名（不要带 https://，结尾不要斜杠）
     domain: 'zhongyiya.cn',
@@ -76,14 +76,6 @@ window.SITE_CONFIG = {
       tag: '小游戏',
       icon: 'assets/icon-meal.svg',
       color: '#FF6B35'
-    },
-    {
-      name: '卡密商城',
-      url: 'https://example.com/shop',
-      desc: '虚拟卡密自动发货',
-      tag: '商业项目',
-      icon: '',
-      color: '#4f46e5'
-    },
+    }
   ]
 };
