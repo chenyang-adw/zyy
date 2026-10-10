@@ -91,18 +91,6 @@
     });
   }
 
-  function renderGrid() {
-    const grid = $('grid');
-    const empty = $('empty');
-    const items = matched();
-
-    grid.innerHTML = items.map((s, i) => cardHtml(s, i)).join('');
-    empty.hidden = items.length > 0;
-    if (!items.length) empty.textContent = keyword ? '没有匹配「' + keyword + '」的站点' : '这个分类下还没有站点';
-
-    grid.querySelectorAll('.card').forEach((el) => loadIcon(el));
-  }
-
   function cardHtml(s, i) {
     const isUpload = s.kind === 'upload';
     const href = PF.safeUrl(s.url);
@@ -127,6 +115,54 @@
       (s.desc ? '<p class="card-desc">' + esc(s.desc) + '</p>' : '') +
       (s.tag ? '<span class="card-tag">' + esc(s.tag) + '</span>' : '') +
       '</a>';
+  }
+
+  /* ---------- 模块分区渲染 ----------
+   * cfg.homeSections = [{ title, desc?, tags? }]
+   * - tags 缺省的分区收纳「未被前面分区认领」的全部站点
+   * - 后续想加模块，在 data.js 里往 homeSections 追加即可
+   */
+  function splitBySections(list) {
+    const sections = (Array.isArray(cfg.homeSections) && cfg.homeSections.length)
+      ? cfg.homeSections
+      : [{ title: '项目案例展示' }];
+    const claimed = new Set();
+    return sections.map((sec) => {
+      const wanted = Array.isArray(sec.tags) ? sec.tags : null;
+      const items = [];
+      list.forEach((s) => {
+        if (claimed.has(s)) return;
+        if (!wanted || wanted.indexOf(s.tag) > -1) { items.push(s); claimed.add(s); }
+      });
+      return { sec: sec, items: items };
+    });
+  }
+
+  function renderGrid() {
+    const wrap = $('grid');
+    const empty = $('empty');
+    const items = matched();
+
+    const groups = splitBySections(items);
+    let idx = 0;
+    wrap.innerHTML = groups
+      .filter((g) => g.items.length)
+      .map((g) =>
+        '<section class="section">' +
+          '<div class="section-head">' +
+            '<h2>' + esc(g.sec.title) + '<span class="section-count">' + g.items.length + ' 个</span></h2>' +
+            (g.sec.desc ? '<p class="section-desc">' + esc(g.sec.desc) + '</p>' : '') +
+          '</div>' +
+          '<div class="grid">' +
+            g.items.map((s) => cardHtml(s, idx++)).join('') +
+          '</div>' +
+        '</section>'
+      ).join('');
+
+    empty.hidden = items.length > 0;
+    if (!items.length) empty.textContent = keyword ? '没有匹配「' + keyword + '」的站点' : '这个分类下还没有站点';
+
+    wrap.querySelectorAll('.card').forEach((el) => loadIcon(el));
   }
 
   /* ---------- 图标：指定图 → favicon 多源降级 → 首字母 ---------- */

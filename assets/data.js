@@ -48,6 +48,17 @@ window.SITE_CONFIG = {
     extraLinks: []        // 例：[{ label: '友情链接', url: 'https://...' }]
   },
 
+  /* ---------- 4.5 首页模块分区 ----------
+   * 首页按这里的顺序渲染模块；tags 省略的分区收纳其余全部站点。
+   * 以后加新模块：往数组里追加 { title: '模块名', desc: '一句话', tags: ['标签'] }
+   */
+  homeSections: [
+    {
+      title: '项目案例展示',
+      desc: '我做过的小工具、小游戏和实验项目，点开即用'
+    }
+  ],
+
   /* ---------- 5. 你的网站清单（重点改这里） ----------
    * 每个站点一个 {}，字段说明：
    *   name  必填  显示名称
@@ -59,6 +70,14 @@ window.SITE_CONFIG = {
    *   color 选填  卡片图标底色（十六进制），留空自动分配
    */
   sites: [
+    {
+      name: '随机抽个饭',
+      url: 'apps/what-to-eat/',
+      desc: '选择困难症救星，一键随机抽顿饭',
+      tag: '小游戏',
+      icon: 'assets/icon-meal.svg',
+      color: '#FF6B35'
+    },
     {
       name: '卡密商城',
       url: 'https://example.com/shop',
