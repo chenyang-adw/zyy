@@ -55,7 +55,6 @@ window.SITE_CONFIG = {
   homeSections: [
     {
       title: '项目案例展示',
-      desc: '我做过的小工具、小游戏和实验项目，点开即用'
     }
   ],
 
@@ -86,45 +85,5 @@ window.SITE_CONFIG = {
       icon: '',
       color: '#4f46e5'
     },
-    {
-      name: '待办清单',
-      url: 'https://example.com/todo',
-      desc: '极简任务管理',
-      tag: '工具类',
-      icon: '',
-      color: '#0f766e'
-    },
-    {
-      name: '贪吃蛇',
-      url: 'https://example.com/snake',
-      desc: '网页版小游戏',
-      tag: '小游戏',
-      icon: '',
-      color: '#b45309'
-    },
-    {
-      name: '天气卡片',
-      url: 'https://example.com/weather',
-      desc: '实时天气查询',
-      tag: '工具类',
-      icon: '',
-      color: '#185fa5'
-    },
-    {
-      name: '文字转语音',
-      url: 'https://example.com/tts',
-      desc: '在线朗读工具',
-      tag: '实验项目',
-      icon: '',
-      color: '#993556'
-    },
-    {
-      name: '个人简历页',
-      url: 'https://example.com/resume',
-      desc: '在线简历',
-      tag: '实验项目',
-      icon: '',
-      color: '#5f5e5a'
-    }
   ]
 };
