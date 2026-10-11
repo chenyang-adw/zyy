@@ -150,35 +150,39 @@
     const wrap = $('grid');
     const empty = $('empty');
     const items = matched();
+    /* 首页默认（全部）用横向滑动展示；一旦按分类/搜索，就回到普通网格全展示 */
+    const filtering = (activeTag !== '全部') || !!keyword.trim();
 
     const groups = splitBySections(items);
     let idx = 0;
     wrap.innerHTML = groups
       .filter((g) => g.items.length)
-      .map((g) =>
-        '<section class="section cases-band">' +
-          '<div class="band-inner">' +
-            '<div class="section-head">' +
-              '<h2>' + esc(g.sec.title) + '<span class="section-count">' + g.items.length + ' 个</span></h2>' +
-              '<p class="section-desc">' + esc(g.sec.desc || '左右滑动看更多 · 点开就能玩') + '</p>' +
-            '</div>' +
-            '<div class="carousel-wrap">' +
-              '<button class="car-nav prev" type="button" aria-label="前一张">‹</button>' +
-              '<div class="carousel" id="carousel">' +
-                g.items.map((s) => cardHtml(s, idx++)).join('') +
-              '</div>' +
-              '<button class="car-nav next" type="button" aria-label="后一张">›</button>' +
-            '</div>' +
-          '</div>' +
-        '</section>'
-      ).join('');
+      .map((g) => {
+        const cards = g.items.map((s) => cardHtml(s, idx++)).join('');
+        const head =
+          '<div class="section-head">' +
+            '<h2>' + esc(g.sec.title) + '<span class="section-count">' + g.items.length + ' 个</span></h2>' +
+            '<p class="section-desc">' + esc(g.sec.desc || (filtering ? '点开就能玩' : '左右滑动看更多 · 点开就能玩')) + '</p>' +
+          '</div>';
+        /* 筛选后：普通网格，全部平铺 */
+        if (filtering) {
+          return '<section class="section">' + head + '<div class="grid">' + cards + '</div></section>';
+        }
+        /* 默认：通栏 + 横向滑动 */
+        return '<section class="section cases-band"><div class="band-inner">' + head +
+          '<div class="carousel-wrap">' +
+            '<button class="car-nav prev" type="button" aria-label="前一张">‹</button>' +
+            '<div class="carousel" id="carousel">' + cards + '</div>' +
+            '<button class="car-nav next" type="button" aria-label="后一张">›</button>' +
+          '</div></div></section>';
+      }).join('');
 
     empty.hidden = items.length > 0;
     if (!items.length) empty.textContent = keyword ? '没有匹配「' + keyword + '」的站点' : '这个分类下还没有站点';
 
     wrap.querySelectorAll('.card').forEach((el) => loadIcon(el));
-    bindCarousel();
-    renderPromo(items.length !== (cfg.sites || []).length);
+    if (!filtering) bindCarousel();
+    renderPromo(filtering);
   }
 
   /* 横向滑动的案例墙：桌面按箭头翻，手机直接滑 */
