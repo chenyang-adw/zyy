@@ -19,7 +19,10 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: linear-gradient(180deg, #f5f6fb 0%, #fbfbfc 340px) fixed;
+  /* 注意：这里不能用 background-attachment: fixed —— 移动端（微信/QQ/UC 内置浏览器、
+     iOS Safari）滚动时没法把它交给合成器，只能每帧软件重绘，跟不上就会露出白底，
+     表现就是「手机上滚动闪白块，电脑上正常」。改成普通背景即可。 */
+  background: linear-gradient(180deg, #f5f6fb 0%, #fbfbfc 340px);
   color: var(--text);
   font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   font-size: 15px;
@@ -671,13 +674,22 @@ footer p { margin: 0; font-size: 13px; color: var(--faint); }
    顶部光效层：星空（底层）+ 粒子（上层）
    脚本在 lizi/stars.js 与 lizi/particles.js
    ============================================================ */
-.hero { position: relative; overflow: hidden; }
+/* 移动端滚动时英雄区也容易闪白：单独提升成合成层，让浏览器一直保留栅格化结果 */
+.hero {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  contain: paint;
+}
 
 /* canvas 是「替换元素」，必须显式给 100% 宽高，否则会退回默认 300x150 */
 canvas.hero-stars,
 canvas.hero-fx {
   position: absolute; inset: 0; width: 100%; height: 100%;
   pointer-events: none; display: block;
+  transform: translateZ(0);          /* 两层各自合成，避免滚动时被反复重绘 */
 }
 canvas.hero-stars { z-index: 1; }   /* 星空层（底层） */
 canvas.hero-fx    { z-index: 2; }   /* 粒子层（上层） */
