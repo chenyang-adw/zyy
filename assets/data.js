@@ -92,6 +92,22 @@ window.SITE_CONFIG = {
         tag: '小游戏',
         icon: 'shui01/icon.svg',
         color: '#f03e3e'
+      },
+      {
+        name: '爱心粒子',
+        url: 'zixinlizi01/',
+        desc: '万千粒子汇成心跳',
+        tag: '特效',
+        icon: 'zixinlizi01/icon.svg',
+        color: '#ff69b4'
+      },
+      {
+        name: '浪漫烟花',
+        url: 'yanhua01/',
+        desc: '写一句话，烟花和爱心替你说',
+        tag: '特效',
+        icon: 'yanhua01/icon.svg',
+        color: '#ba55d3'
     }
   ]
 };

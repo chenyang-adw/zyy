@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>爱心粒子</title>
+<meta name="description" content="万千粒子汇成心跳：纯 Canvas 的爱心粒子动画，点击可以炸开再重新汇聚。">
+<meta name="theme-color" content="#0b0a12">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>
+  html, body { margin: 0; height: 100%; background: #0b0a12; overflow: hidden; }
+  body { font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+  #c { display: block; width: 100vw; height: 100vh; touch-action: none; cursor: crosshair; }
+  .hint {
+    position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%);
+    color: rgba(255, 182, 193, .55); font-size: 12px; letter-spacing: .04em;
+    pointer-events: none; user-select: none; white-space: nowrap;
+    animation: fade 6s ease 3s both;
+  }
+  @keyframes fade { from { opacity: 1; } to { opacity: 0; } }
+</style>
+</head>
+<body>
+
+<canvas id="c"></canvas>
+<p class="hint">点一下 / 摸一下 → 爱心会炸开再重新聚拢</p>
+
+<!-- 想改参数（粒子数、配色、文案）就改这里，或者删掉这段用默认值 -->
+<script>
+window.HEART_CONFIG = {
+  text: '',            // 例如 '送给你 ❤'，留空则不显示
+  count: 0,            // 0 = 按屏幕自动
+  breath: 0.05,        // 呼吸幅度
+  trail: 0.18          // 拖尾：越小拖尾越长
+};
+</script>
+<script src="heart.js"></script>
+</body>
+</html>
