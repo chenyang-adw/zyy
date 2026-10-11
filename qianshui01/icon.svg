@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0e6c66"/>
+      <stop offset="1" stop-color="#04211f"/>
+    </linearGradient>
+    <radialGradient id="sub" cx="38%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#1c6b66"/>
+      <stop offset="1" stop-color="#093b38"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#sea)"/>
+
+  <!-- 两侧隧道壁 -->
+  <g fill="#0a4f4c">
+    <path d="M0 60 L52 96 L0 132 Z M0 176 L52 212 L0 248 Z M0 292 L52 328 L0 364 Z M0 408 L52 444 L0 480 Z"/>
+    <path d="M512 60 L460 96 L512 132 Z M512 176 L460 212 L512 248 Z M512 292 L460 328 L512 364 Z M512 408 L460 444 L512 480 Z"/>
+  </g>
+  <g fill="#8ef0e2" opacity=".5">
+    <path d="M0 60 L30 78 L0 96 Z M0 176 L30 194 L0 212 Z M0 292 L30 310 L0 328 Z M0 408 L30 426 L0 444 Z"/>
+    <path d="M512 60 L482 78 L512 96 Z M512 176 L482 194 L512 212 Z M512 292 L482 310 L512 328 Z M512 408 L482 426 L512 444 Z"/>
+  </g>
+
+  <!-- 气泡 -->
+  <g fill="none" stroke="#bffcf4" stroke-width="6" opacity=".5">
+    <circle cx="150" cy="140" r="16"/>
+    <circle cx="360" cy="108" r="11"/>
+    <circle cx="392" cy="200" r="8"/>
+  </g>
+
+  <!-- 玩家潜艇 -->
+  <g transform="translate(256 316)">
+    <ellipse cx="0" cy="62" rx="96" ry="30" fill="#8ef0e2" opacity=".18"/>
+    <path d="M-34 -66h68v22h-68z" fill="#0b3b38"/>
+    <circle r="96" fill="#ffffff" opacity=".92"/>
+    <circle r="86" fill="url(#sub)"/>
+    <path d="M-96 0h192v22h-192z" fill="#062a28"/>
+    <circle r="40" fill="none" stroke="#0b3b38" stroke-width="10"/>
+    <path d="M-40 0h80M0 -40v80" stroke="#0b3b38" stroke-width="10"/>
+    <path d="M-30 -22a38 38 0 0 1 24-14" fill="none" stroke="#8ef0e2" stroke-width="9" stroke-linecap="round" opacity=".8"/>
+  </g>
+</svg>

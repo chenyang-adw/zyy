@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>节奏音符 · 双轨音游</title>
+<meta name="description" content="双轨下落式音游：两条轨道接住落下来的音符，长条按住不放，看你能拿什么评级。">
+<meta name="theme-color" content="#0a0d1a">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <header class="topbar">
+    <h1>节奏音符</h1>
+    <div class="stats">
+      <div class="stat"><span class="k">分数</span><b id="score">0</b></div>
+      <div class="stat"><span class="k">连击</span><b id="combo">0</b></div>
+      <div class="stat"><span class="k">准确率</span><b id="acc">100%</b></div>
+      <button class="btn icon" id="btnSound" title="音效开关">🔊</button>
+    </div>
+  </header>
+
+  <main id="stage">
+    <canvas id="game" aria-label="音游轨道"></canvas>
+
+    <div class="overlay" id="start" >
+      <div class="card">
+        <h2>节奏音符</h2>
+        <p class="tip">左边轨道点左半屏（或 A），右边轨道点右半屏（或 D）<br>长条音符要按住直到结束</p>
+        <div class="btnrow">
+          <button class="btn primary" data-level="0">第一幕</button>
+          <button class="btn primary" data-level="1">第二幕</button>
+        </div>
+        <p class="tip small" id="bestLine">历史最佳：—</p>
+      </div>
+    </div>
+
+    <div class="overlay" id="over" hidden>
+      <div class="card">
+        <h2 id="overTitle">演奏结束</h2>
+        <div class="grade" id="grade">A</div>
+        <div class="scores">
+          <div class="srow"><span>分数</span><b id="finalScore">0</b></div>
+          <div class="srow"><span>最大连击</span><b id="finalCombo">0</b></div>
+          <div class="srow"><span>准确率</span><b id="finalAcc">0%</b></div>
+        </div>
+        <div class="btnrow">
+          <button class="btn primary" id="btnAgain">再来一次</button>
+          <button class="btn" id="btnBack">换一首</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="tools">
+    <span class="hintline" id="hintline">左右两键 · 长条按住</span>
+    <button class="btn" id="btnRestart">重开</button>
+  </footer>
+
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff3fae"/>
+      <stop offset="1" stop-color="#d4007d"/>
+    </linearGradient>
+    <radialGradient id="ball" cx="36%" cy="30%" r="72%">
+      <stop offset="0" stop-color="#c8f5b8"/>
+      <stop offset="1" stop-color="#7ecb62"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="120" cy="128" r="62" fill="#ffffff" opacity=".16"/>
+  <circle cx="412" cy="376" r="48" fill="#ffffff" opacity=".12"/>
+
+  <!-- 上面那个环（带彩色实心段） -->
+  <g transform="translate(256 168)" stroke-linecap="round" fill="none">
+    <circle r="104" stroke="#eaf6ff" stroke-width="26"/>
+    <circle r="104" stroke="#ffffff" stroke-width="9" stroke-dasharray="120 999" stroke-dashoffset="-8"/>
+    <path d="M-73.5 73.5 A104 104 0 0 1 73.5 -73.5" stroke="#ffc500" stroke-width="26"/>
+    <path d="M-73.5 73.5 A104 104 0 0 1 73.5 -73.5" stroke="#fed74e" stroke-width="9"/>
+    <path d="M73.5 -73.5 A104 104 0 0 1 73.5 73.5" stroke="#9600ff" stroke-width="26"/>
+    <path d="M73.5 -73.5 A104 104 0 0 1 73.5 73.5" stroke="#b64dff" stroke-width="9"/>
+  </g>
+
+  <!-- 小球 -->
+  <g transform="translate(256 352)">
+    <circle r="46" fill="#ffffff"/>
+    <circle r="40" fill="url(#ball)"/>
+    <ellipse cx="-18" cy="2" rx="7" ry="10" fill="#2f2f3a"/>
+    <ellipse cx="18" cy="2" rx="7" ry="10" fill="#2f2f3a"/>
+    <path d="M-16 22 q16 12 32 0" fill="none" stroke="#2f2f3a" stroke-width="7" stroke-linecap="round"/>
+    <ellipse cx="-14" cy="-14" rx="12" ry="7" fill="#ffffff" opacity=".55"/>
+  </g>
+</svg>

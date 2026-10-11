@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>斗兽棋 · 暗棋</title>
+<meta name="description" content="斗兽棋暗棋：16 张牌 4×4 摆开，翻牌定色，大吃小、同级同归于尽、最小的猪能吃最大的象。">
+<meta name="theme-color" content="#101826">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <header class="topbar">
+    <h1>斗兽棋 · 暗棋</h1>
+    <div class="stats">
+      <div class="stat"><span class="k">我方棋子</span><b id="mine">8</b></div>
+      <div class="stat"><span class="k">对方棋子</span><b id="theirs">8</b></div>
+      <div class="stat"><span class="k">战绩</span><b id="record">0/0</b></div>
+      <button class="btn icon" id="btnSound" title="音效开关">🔊</button>
+    </div>
+  </header>
+
+  <main id="stage">
+    <canvas id="game" aria-label="斗兽棋棋盘"></canvas>
+
+    <div class="overlay" id="over" hidden>
+      <div class="card">
+        <h2 id="overTitle">你赢了</h2>
+        <p class="tip" id="overTip">把对方的棋子全部吃掉</p>
+        <div class="scores">
+          <div class="srow"><span>累计胜利</span><b id="finalWin">0</b></div>
+          <div class="srow"><span>累计失败</span><b id="finalLose">0</b></div>
+        </div>
+        <button class="btn primary" id="btnAgain">再来一局</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="tools">
+    <span class="hintline" id="hintline">先翻一张牌定颜色 · 再点自己的棋走到相邻格子吃子</span>
+    <button class="btn" id="btnRestart">重开一局</button>
+  </footer>
+
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

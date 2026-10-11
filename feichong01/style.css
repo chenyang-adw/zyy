@@ -1,0 +1,188 @@
+/* 一飞冲天 · 素材取自 xyx/CocosCreator小游戏《一飞冲天》源码 */
+:root {
+  --font: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --ink: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; margin: 0; }
+
+body {
+  font-family: var(--font);
+  color: var(--ink);
+  background: #f30e98;
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+#app {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: calc(6px + env(safe-area-inset-top)) 10px calc(6px + env(safe-area-inset-bottom));
+}
+
+/* ---------- 顶栏 ---------- */
+.topbar {
+  width: 100%;
+  max-width: 620px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+/* 原版「一飞冲天」标题（plist 里的矩形跟图集不同步，这里按实际内容量出来：
+   图集 151,0 起，353x80） */
+.logo {
+  width: 150px;
+  height: 34px;
+  background-image: url(assets/atlas.png);
+  background-repeat: no-repeat;
+  background-size: 217.6px 217.6px;
+  background-position: -64.2px 0;
+}
+
+.stats { display: flex; align-items: center; gap: 8px; }
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, .22);
+  border: 1px solid rgba(255, 255, 255, .28);
+}
+
+.stat .k { font-size: 10px; letter-spacing: .1em; opacity: .8; }
+.stat b { font-size: 16px; font-weight: 800; line-height: 1.15; font-variant-numeric: tabular-nums; }
+
+/* ---------- 舞台 ---------- */
+#stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+}
+
+#game { display: block; width: 100%; height: 100%; cursor: pointer; }
+
+/* ---------- 结算 ---------- */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, .38);
+  backdrop-filter: blur(4px);
+  z-index: 5;
+}
+
+.overlay[hidden] { display: none; }
+
+.card {
+  width: min(320px, 100%);
+  padding: 22px 20px 18px;
+  border-radius: 22px;
+  text-align: center;
+  background: linear-gradient(180deg, #ffffff, #f2f6ff);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, .35);
+  color: #2c3a55;
+}
+
+.card h2 { margin: 0 0 6px; font-size: 21px; letter-spacing: .04em; color: #23304a; }
+.card .tip { margin: 0 0 16px; font-size: 12.5px; color: #7b879c; }
+
+.scores { margin-bottom: 18px; }
+
+.srow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 7px 2px;
+  font-size: 13px;
+  color: #7b879c;
+  border-bottom: 1px dashed rgba(90, 110, 150, .18);
+}
+
+.srow b { font-size: 22px; color: #23304a; font-variant-numeric: tabular-nums; }
+
+.btnrow { display: flex; flex-direction: column; gap: 8px; }
+
+/* ---------- 按钮 ---------- */
+.tools { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+
+.hintline { font-size: 12px; color: rgba(255, 255, 255, .9); letter-spacing: .02em; }
+
+.btn {
+  font-family: inherit;
+  font-size: 13px;
+  color: #ffffff;
+  padding: 9px 16px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(255, 255, 255, .45);
+  background: rgba(0, 0, 0, .22);
+  cursor: pointer;
+  transition: transform .12s ease, background .2s ease;
+}
+
+.btn:hover { background: rgba(0, 0, 0, .34); }
+.btn:active { transform: scale(.96); }
+
+.btn.icon { padding: 8px 10px; font-size: 14px; line-height: 1; }
+
+/* 用原工程 atlas 里的按钮：btton_fuhuo(2,287,248,90) / common_button_green(240,424,175,75) */
+.btn.primary,
+.btn.revive {
+  color: #ffffff;
+  font-weight: 800;
+  border: 0;
+  border-radius: 0;
+  background-image: url(assets/atlas.png);
+  background-repeat: no-repeat;
+  background-size: 307.2px 307.2px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .28);
+}
+
+.btn.primary {
+  width: 105px;
+  height: 45px;
+  padding: 0;
+  margin: 0 auto;
+  background-position: -144px -254.4px;
+}
+
+.btn.revive {
+  width: 149px;
+  height: 54px;
+  padding: 0;
+  margin: 0 auto;
+  background-position: -1.2px -172.2px;
+}
+
+.btn.primary:hover, .btn.revive:hover { filter: brightness(1.06); }
+
+.btn.primary:active, .btn.revive:active { transform: translateY(1px) scale(.98); }
+
+@media (max-width: 400px) {
+  .logo { width: 112px; height: 25px; background-size: 162.5px 162.5px; background-position: -47.9px 0; }
+  .stat { padding: 3px 9px; }
+  .stat b { font-size: 15px; }
+  .hintline { display: none; }
+}

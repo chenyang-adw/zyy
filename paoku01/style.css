@@ -1,0 +1,182 @@
+/* 隐形人跑酷 · 素材取自 xyx/隐形人跑酷-creator */
+:root {
+  --font: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --ink: #1b1b1b;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; margin: 0; }
+
+body {
+  font-family: var(--font);
+  color: var(--ink);
+  background: #f7f7f4;
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+#app {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: calc(6px + env(safe-area-inset-top)) 10px calc(6px + env(safe-area-inset-bottom));
+}
+
+.topbar {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.stats { display: flex; align-items: center; gap: 7px; }
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 11px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 2px solid var(--ink);
+}
+
+.stat .k { font-size: 10px; letter-spacing: .08em; color: #6b6b6b; }
+.stat b { font-size: 15px; font-weight: 800; line-height: 1.15; font-variant-numeric: tabular-nums; }
+
+#stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+}
+
+#game { display: block; width: 100%; height: 100%; }
+
+/* 手机上的操作按钮 */
+.pad {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  z-index: 4;
+}
+
+.pbtn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink);
+  background: rgba(255, 255, 255, .82);
+  border: 3px solid var(--ink);
+  cursor: pointer;
+  user-select: none;
+  transition: transform .1s ease, background .15s ease;
+}
+
+.pbtn.jump { width: 68px; height: 68px; font-size: 17px; margin-left: 6px; }
+.pbtn:active, .pbtn.on { transform: scale(.94); background: #ffe86b; }
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(255, 255, 255, .72);
+  backdrop-filter: blur(4px);
+  z-index: 5;
+}
+
+.overlay[hidden] { display: none; }
+
+.card {
+  width: min(310px, 100%);
+  padding: 22px 20px 18px;
+  border-radius: 16px;
+  text-align: center;
+  background: #ffffff;
+  border: 3px solid var(--ink);
+  box-shadow: 6px 6px 0 rgba(27, 27, 27, .9);
+}
+
+.card h2 { margin: 0 0 6px; font-size: 20px; letter-spacing: .06em; }
+.card .tip { margin: 0 0 16px; font-size: 12.5px; color: #6b6b6b; }
+
+.scores { margin-bottom: 18px; }
+
+.srow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 7px 2px;
+  font-size: 13px;
+  color: #6b6b6b;
+  border-bottom: 2px dashed #dcdcd6;
+}
+
+.srow b { font-size: 21px; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+.tools { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+.hintline { font-size: 12px; color: #6b6b6b; }
+
+.btn {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: 2px solid var(--ink);
+  background: #ffffff;
+  cursor: pointer;
+  transition: transform .12s ease, background .2s ease;
+}
+
+.btn:hover { background: #f0f0ea; }
+.btn:active { transform: scale(.96); }
+.btn.icon { padding: 8px 10px; font-size: 14px; line-height: 1; }
+
+.btn.primary {
+  background: #ffe86b;
+  box-shadow: 4px 4px 0 rgba(27, 27, 27, .9);
+}
+
+.btn.primary:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 rgba(27, 27, 27, .9); }
+
+@media (max-width: 420px) {
+  .topbar h1 { font-size: 14px; }
+  .stat { padding: 3px 8px; }
+  .stat b { font-size: 14px; }
+  .hintline { display: none; }
+  .pbtn { width: 52px; height: 52px; }
+  .pbtn.jump { width: 60px; height: 60px; }
+}

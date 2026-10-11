@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 183" width="620" height="183">
+  <!-- 标题：白字 + 黑粗描边 + 黑色投影，跟原工程 title.png 一个风格 -->
+  <g font-family="'Yuanti SC','YouYuan','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif"
+     font-size="112" font-weight="800" text-anchor="middle" letter-spacing="4">
+    <text x="313" y="138" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="30"
+          stroke-linejoin="round" paint-order="stroke" opacity=".92">果了个果</text>
+    <text x="306" y="130" fill="#ffffff" stroke="#1b1b1b" stroke-width="30"
+          stroke-linejoin="round" paint-order="stroke">果了个果</text>
+  </g>
+</svg>

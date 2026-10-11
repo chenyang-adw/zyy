@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#fbfbf8"/>
+
+  <!-- 手绘砖块 -->
+  <g fill="#ffffff" stroke="#1b1b1b" stroke-width="7">
+    <rect x="0" y="368" width="180" height="90"/>
+    <rect x="180" y="368" width="180" height="90"/>
+    <rect x="360" y="368" width="152" height="90"/>
+    <rect x="90" y="278" width="180" height="90"/>
+    <rect x="270" y="278" width="180" height="90"/>
+  </g>
+
+  <!-- 尖刺 -->
+  <g fill="#1b1b1b">
+    <path d="M20 368 L60 296 L100 368 Z"/>
+    <path d="M380 368 L420 296 L460 368 Z"/>
+  </g>
+
+  <!-- 火柴人 -->
+  <g stroke="#1b1b1b" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="252" cy="120" r="42" stroke-width="12" fill="#ffffff"/>
+    <path d="M252 162 L246 258" stroke-width="13"/>
+    <path d="M248 190 L196 214" stroke-width="12"/>
+    <path d="M248 190 L300 148" stroke-width="12"/>
+    <path d="M246 258 L200 316" stroke-width="13"/>
+    <path d="M246 258 L300 310" stroke-width="13"/>
+    <path d="M200 316 L166 316" stroke-width="12"/>
+    <path d="M300 310 L336 330" stroke-width="12"/>
+  </g>
+
+  <!-- 门 -->
+  <g stroke="#1b1b1b" stroke-width="7" fill="#ffffff">
+    <rect x="300" y="180" width="120" height="188"/>
+    <circle cx="392" cy="278" r="9" fill="#1b1b1b"/>
+  </g>
+</svg>

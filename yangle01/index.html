@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>果了个果 · 堆叠三消</title>
+<meta name="description" content="果了个果：堆叠式三消，一摞牌只能拿最上面那张，三个一样的一起消掉，托盘满了就输。">
+<meta name="theme-color" content="#bfe97f">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <header class="topbar">
+    <div class="logo" aria-label="果了个果"></div>
+    <div class="stats">
+      <div class="stat"><span class="k">关卡</span><b id="level">1</b></div>
+      <div class="stat"><span class="k">剩余</span><b id="left">0</b></div>
+      <button class="btn icon" id="btnSound" title="音效开关">🔊</button>
+    </div>
+  </header>
+
+  <main id="stage">
+    <canvas id="game" aria-label="果了个果游戏区"></canvas>
+
+    <div class="overlay" id="over" hidden>
+      <div class="card">
+        <h2 id="overTitle">过关啦</h2>
+        <p class="tip" id="overTip">手速不错</p>
+        <div class="scores">
+          <div class="srow"><span>通过关卡</span><b id="finalLevel">1</b></div>
+          <div class="srow"><span>最高关卡</span><b id="finalBest">1</b></div>
+        </div>
+        <div class="btnrow">
+          <button class="btn primary" id="btnAgain">再来一次</button>
+          <button class="btn" id="btnNext" hidden>下一关</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="tools">
+    <span class="hintline" id="hintline">一次只能拿一摞里最上面那张</span>
+    <button class="btn" id="btnRestart">重开本关</button>
+  </footer>
+
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

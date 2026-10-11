@@ -1,0 +1,633 @@
+{
+  "Name": "Audio_001",
+  "SourceClipName": "Audio_001",
+  "SampleRate": 44100,
+  "BPM": 120,
+  "Tracks": [
+    {
+      "Name": "Track_001_1",
+      "Notes": [
+        {
+          "Val": "A#2007",
+          "StartTime": 2500,
+          "EndTime": 2500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 4000,
+          "EndTime": 4000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 5000,
+          "EndTime": 5000
+        },
+        {
+          "Val": "A#2008",
+          "StartTime": 6000,
+          "EndTime": 7000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 9000,
+          "EndTime": 9000
+        },
+        {
+          "Val": "A#2007",
+          "StartTime": 11000,
+          "EndTime": 11000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 12500,
+          "EndTime": 12500
+        },
+        {
+          "Val": "A#2007",
+          "StartTime": 14500,
+          "EndTime": 14500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 16000,
+          "EndTime": 16000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 17000,
+          "EndTime": 17000
+        },
+        {
+          "Val": "A#2008",
+          "StartTime": 18500,
+          "EndTime": 19500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 22000,
+          "EndTime": 22000
+        },
+        {
+          "Val": "A#2007",
+          "StartTime": 22500,
+          "EndTime": 22500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 24500,
+          "EndTime": 24500
+        },
+        {
+          "Val": "A#2007",
+          "StartTime": 25500,
+          "EndTime": 25500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 27500,
+          "EndTime": 27500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 28000,
+          "EndTime": 28000
+        },
+        {
+          "Val": "A#2008",
+          "StartTime": 28500,
+          "EndTime": 30000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 31500,
+          "EndTime": 31500
+        },
+        {
+          "Val": "A#2007",
+          "StartTime": 33000,
+          "EndTime": 33000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 35000,
+          "EndTime": 35000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 37000,
+          "EndTime": 37000
+        },
+        {
+          "Val": "A#2007",
+          "StartTime": 37500,
+          "EndTime": 37500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 39500,
+          "EndTime": 39500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 40000,
+          "EndTime": 40000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 43000,
+          "EndTime": 43000
+        },
+        {
+          "Val": "A#2007",
+          "StartTime": 44500,
+          "EndTime": 44500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 46000,
+          "EndTime": 46000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 46500,
+          "EndTime": 46500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 47500,
+          "EndTime": 47500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 48000,
+          "EndTime": 48000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 50500,
+          "EndTime": 50500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 51000,
+          "EndTime": 51000
+        },
+        {
+          "Val": "A#2007",
+          "StartTime": 52500,
+          "EndTime": 52500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 54000,
+          "EndTime": 54000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 56000,
+          "EndTime": 56000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 56500,
+          "EndTime": 56500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 59500,
+          "EndTime": 59500
+        },
+        {
+          "Val": "A#2007",
+          "StartTime": 61000,
+          "EndTime": 61000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 61500,
+          "EndTime": 61500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 64000,
+          "EndTime": 64000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 64500,
+          "EndTime": 64500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 67500,
+          "EndTime": 67500
+        },
+        {
+          "Val": "A#2007",
+          "StartTime": 69500,
+          "EndTime": 69500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 70500,
+          "EndTime": 70500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 72000,
+          "EndTime": 72000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 73500,
+          "EndTime": 73500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 74000,
+          "EndTime": 74000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 75500,
+          "EndTime": 75500
+        },
+        {
+          "Val": "A#2007",
+          "StartTime": 78500,
+          "EndTime": 78500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 80000,
+          "EndTime": 80000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 81500,
+          "EndTime": 81500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 83500,
+          "EndTime": 83500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 84000,
+          "EndTime": 84000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 86000,
+          "EndTime": 86000
+        },
+        {
+          "Val": "A#2007",
+          "StartTime": 88000,
+          "EndTime": 88000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 89500,
+          "EndTime": 89500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 91000,
+          "EndTime": 91000
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 92500,
+          "EndTime": 92500
+        },
+        {
+          "Val": "A#2002",
+          "StartTime": 93500,
+          "EndTime": 93500
+        }
+      ]
+    },
+    {
+      "Name": "Track_001_2",
+      "Notes": [
+        {
+          "Val": "B#2002",
+          "StartTime": 2000,
+          "EndTime": 2000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 3500,
+          "EndTime": 3500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 5500,
+          "EndTime": 5500
+        },
+        {
+          "Val": "B#2007",
+          "StartTime": 7000,
+          "EndTime": 8500
+        },
+        {
+          "Val": "b#2001",
+          "StartTime": 10000,
+          "EndTime": 10000
+        },
+        {
+          "Val": "B#2005",
+          "StartTime": 12000,
+          "EndTime": 12000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 13000,
+          "EndTime": 13000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 13500,
+          "EndTime": 13500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 14000,
+          "EndTime": 14000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 15000,
+          "EndTime": 15000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 16500,
+          "EndTime": 16500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 18500,
+          "EndTime": 18500
+        },
+        {
+          "Val": "B#2007",
+          "StartTime": 20000,
+          "EndTime": 21500
+        },
+        {
+          "Val": "b#2001",
+          "StartTime": 23000,
+          "EndTime": 23000
+        },
+        {
+          "Val": "B#2005",
+          "StartTime": 25000,
+          "EndTime": 25000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 26000,
+          "EndTime": 26000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 26500,
+          "EndTime": 26500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 27000,
+          "EndTime": 27000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 30500,
+          "EndTime": 30500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 32000,
+          "EndTime": 32000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 34000,
+          "EndTime": 34000
+        },
+        {
+          "Val": "B#2007",
+          "StartTime": 35500,
+          "EndTime": 37000
+        },
+        {
+          "Val": "b#2001",
+          "StartTime": 38500,
+          "EndTime": 38500
+        },
+        {
+          "Val": "B#2005",
+          "StartTime": 40500,
+          "EndTime": 40500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 41500,
+          "EndTime": 41500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 42000,
+          "EndTime": 42000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 42500,
+          "EndTime": 42500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 43500,
+          "EndTime": 43500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 45000,
+          "EndTime": 45000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 47000,
+          "EndTime": 47000
+        },
+        {
+          "Val": "B#2007",
+          "StartTime": 48500,
+          "EndTime": 50000
+        },
+        {
+          "Val": "b#2001",
+          "StartTime": 51500,
+          "EndTime": 51500
+        },
+        {
+          "Val": "B#2005",
+          "StartTime": 53500,
+          "EndTime": 53500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 54500,
+          "EndTime": 54500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 55000,
+          "EndTime": 55000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 55500,
+          "EndTime": 55500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 57000,
+          "EndTime": 57000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 58500,
+          "EndTime": 58500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 60500,
+          "EndTime": 60500
+        },
+        {
+          "Val": "B#2007",
+          "StartTime": 62000,
+          "EndTime": 63500
+        },
+        {
+          "Val": "b#2001",
+          "StartTime": 65000,
+          "EndTime": 65000
+        },
+        {
+          "Val": "B#2005",
+          "StartTime": 67000,
+          "EndTime": 67000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 68000,
+          "EndTime": 68000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 68500,
+          "EndTime": 68500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 69000,
+          "EndTime": 69000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 71000,
+          "EndTime": 71000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 72500,
+          "EndTime": 72500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 74500,
+          "EndTime": 74500
+        },
+        {
+          "Val": "B#2007",
+          "StartTime": 76000,
+          "EndTime": 77500
+        },
+        {
+          "Val": "b#2001",
+          "StartTime": 79000,
+          "EndTime": 79000
+        },
+        {
+          "Val": "B#2005",
+          "StartTime": 81000,
+          "EndTime": 81000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 82000,
+          "EndTime": 82000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 82500,
+          "EndTime": 82500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 83000,
+          "EndTime": 83000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 85000,
+          "EndTime": 85000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 86500,
+          "EndTime": 86500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 88500,
+          "EndTime": 88500
+        },
+        {
+          "Val": "B#2007",
+          "StartTime": 90000,
+          "EndTime": 91500
+        },
+        {
+          "Val": "b#2001",
+          "StartTime": 93000,
+          "EndTime": 93000
+        },
+        {
+          "Val": "B#2005",
+          "StartTime": 95000,
+          "EndTime": 95000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 96000,
+          "EndTime": 96000
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 96500,
+          "EndTime": 96500
+        },
+        {
+          "Val": "B#2002",
+          "StartTime": 97000,
+          "EndTime": 97000
+        }
+      ]
+    }
+  ]
+}

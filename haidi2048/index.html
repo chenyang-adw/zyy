@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>海底 2048 · 合成大海怪</title>
+<meta name="description" content="海底主题的 2048 合成球：拖动落球，相同数字相撞合并翻倍，一路合成到 2048。">
+<meta name="theme-color" content="#031a2e">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="sea" aria-hidden="true"></canvas>
+
+<div id="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      <h1>海底 2048</h1>
+    </div>
+    <div class="stats">
+      <div class="stat"><span class="k">分数</span><b id="score">0</b></div>
+      <div class="stat"><span class="k">最高</span><b id="best">0</b></div>
+      <div class="stat next"><span class="k">下一个</span><canvas id="nextc"></canvas></div>
+    </div>
+  </header>
+
+  <main id="stage">
+    <canvas id="tank" aria-label="海底 2048 游戏区"></canvas>
+    <div class="hint" id="hint">按住左右拖动 · 松手落下</div>
+
+    <div class="overlay" id="over" hidden>
+      <div class="card">
+        <h2 id="overTitle">球堆到顶了</h2>
+        <p id="overText">水面被堵住了，再来一局吧</p>
+        <div class="finalrow"><span class="k">本局得分</span><b id="finalScore">0</b></div>
+        <div class="finalrow"><span class="k">历史最高</span><b id="finalBest">0</b></div>
+        <button class="btn primary" id="btnAgain">再来一局</button>
+      </div>
+    </div>
+
+    <div class="overlay" id="help" hidden>
+      <div class="card">
+        <h2>玩法</h2>
+        <ul>
+          <li>拖动左右选位置，松手落下小球</li>
+          <li>两个<b>相同数字</b>的球碰到一起就会合并翻倍</li>
+          <li>球堆超过上方红线不动 1.5 秒就结束</li>
+          <li>一路合成到 <b>2048</b> 就会炸开，然后继续挑战更高分</li>
+        </ul>
+        <p class="tip">电脑：← → 移动，空格落下；手机：手指拖动</p>
+        <button class="btn primary" id="btnCloseHelp">知道了</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="tools">
+    <button class="btn" id="btnSound">🔊 音效</button>
+    <button class="btn" id="btnHelp">玩法</button>
+    <button class="btn" id="btnRestart">重新开始</button>
+  </footer>
+
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1281bd"/>
+      <stop offset="0.5" stop-color="#07456f"/>
+      <stop offset="1" stop-color="#03182c"/>
+    </linearGradient>
+    <radialGradient id="g1" cx="34%" cy="28%" r="78%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.45" stop-color="#a9dcf5"/>
+      <stop offset="1" stop-color="#4b9bcd"/>
+    </radialGradient>
+    <radialGradient id="g2" cx="34%" cy="28%" r="78%">
+      <stop offset="0" stop-color="#eeffe4"/>
+      <stop offset="0.5" stop-color="#7cd07a"/>
+      <stop offset="1" stop-color="#3c9b3a"/>
+    </radialGradient>
+    <radialGradient id="g3" cx="34%" cy="28%" r="78%">
+      <stop offset="0" stop-color="#f1e2ff"/>
+      <stop offset="0.5" stop-color="#b079ef"/>
+      <stop offset="1" stop-color="#7726cf"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="116" fill="url(#bg)"/>
+
+  <!-- 背景气泡 -->
+  <circle cx="92" cy="118" r="11" fill="none" stroke="#cdf1ff" stroke-width="7" opacity=".45"/>
+  <circle cx="432" cy="196" r="8" fill="none" stroke="#cdf1ff" stroke-width="6" opacity=".38"/>
+  <circle cx="150" cy="452" r="9" fill="none" stroke="#cdf1ff" stroke-width="6" opacity=".3"/>
+  <circle cx="404" cy="420" r="14" fill="none" stroke="#cdf1ff" stroke-width="7" opacity=".28"/>
+  <circle cx="62" cy="300" r="6" fill="none" stroke="#cdf1ff" stroke-width="5" opacity=".3"/>
+
+  <!-- 三条小鱼 -->
+  <g opacity=".5">
+    <path d="M468 108c0 0-6-14-22-14s-24 12-26 24c-2 12 8 26 26 26 14 0 22-16 22-16l14 10 2-14-4-8z" fill="#7fd8ff"/>
+    <circle cx="438" cy="112" r="3.4" fill="#062b46"/>
+  </g>
+  <g opacity=".38">
+    <path d="M46 214c0 0-6-14-22-14s-24 12-26 24c-2 12 8 26 26 26 14 0 22-16 22-16l14 10 2-14-4-8z" fill="#8ff0d8"/>
+    <circle cx="16" cy="218" r="3.4" fill="#062b46"/>
+  </g>
+
+  <!-- 球 -->
+  <circle cx="214" cy="316" r="126" fill="url(#g3)"/>
+  <circle cx="214" cy="316" r="126" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="5"/>
+  <ellipse cx="168" cy="264" rx="40" ry="23" transform="rotate(-38 168 264)" fill="#ffffff" opacity=".62"/>
+
+  <circle cx="356" cy="176" r="62" fill="url(#g1)"/>
+  <circle cx="356" cy="176" r="62" fill="none" stroke="#ffffff" stroke-opacity=".3" stroke-width="4"/>
+  <ellipse cx="334" cy="150" rx="20" ry="12" transform="rotate(-38 334 150)" fill="#ffffff" opacity=".6"/>
+
+  <circle cx="132" cy="430" r="58" fill="url(#g2)"/>
+  <circle cx="132" cy="430" r="58" fill="none" stroke="#ffffff" stroke-opacity=".3" stroke-width="4"/>
+  <ellipse cx="110" cy="406" rx="18" ry="11" transform="rotate(-38 110 406)" fill="#ffffff" opacity=".6"/>
+
+  <text x="214" y="348" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei',system-ui,sans-serif"
+        font-size="90" font-weight="800" fill="#2c0a52" opacity=".92">2048</text>
+</svg>

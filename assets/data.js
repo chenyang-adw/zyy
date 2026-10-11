@@ -108,6 +108,78 @@ window.SITE_CONFIG = {
         tag: '特效',
         icon: 'yanhua01/icon.svg',
         color: '#ba55d3'
+    },
+    {
+      name: '海底 2048',
+      url: 'haidi2048/',
+      desc: '拖动合成，一路合到 2048',
+      tag: '小游戏',
+      icon: 'haidi2048/icon.svg',
+      color: '#1a86c8'
+    },
+    {
+      name: '跳跃鸟',
+      url: 'tiaoyueniao01/',
+      desc: '点一下扇翅膀，穿过水管',
+      tag: '小游戏',
+      icon: 'tiaoyueniao01/icon.svg',
+      color: '#4ec0ca'
+    },
+    {
+      name: '跳一跳',
+      url: 'tiaoyitiao01/',
+      desc: '按住蓄力，落中间得双倍分',
+      tag: '小游戏',
+      icon: 'tiaoyitiao01/icon.svg',
+      color: '#b98cf0'
+    },
+    {
+      name: '果了个果',
+      url: 'yangle01/',
+      desc: '一摞牌只能拿最上面那张',
+      tag: '小游戏',
+      icon: 'yangle01/icon.svg',
+      color: '#7cb02f'
+    },
+    {
+      name: '一飞冲天',
+      url: 'feichong01/',
+      desc: '穿过旋转圆环，玻璃能撞碎',
+      tag: '小游戏',
+      icon: 'feichong01/icon.svg',
+      color: '#f30e98'
+    },
+    {
+      name: '深海潜水艇',
+      url: 'qianshui01/',
+      desc: '拖动潜艇躲敌舰，捡激光反击',
+      tag: '小游戏',
+      icon: 'qianshui01/icon.svg',
+      color: '#0e6c66'
+    },
+    {
+      name: '隐形人跑酷',
+      url: 'paoku01/',
+      desc: '黑白火柴人，跳过尖刺开门',
+      tag: '小游戏',
+      icon: 'paoku01/icon.svg',
+      color: '#1b1b1b'
+    },
+    {
+      name: '斗兽棋 · 暗棋',
+      url: 'doushouqi01/',
+      desc: '4×4 暗棋，最小的猪能吃象',
+      tag: '小游戏',
+      icon: 'doushouqi01/icon.svg',
+      color: '#4a90e2'
+    },
+    {
+      name: '节奏音符',
+      url: 'yinyue01/',
+      desc: '双轨音游，长条要按住不放',
+      tag: '小游戏',
+      icon: 'yinyue01/icon.svg',
+      color: '#4ec3f0'
     }
   ]
 };

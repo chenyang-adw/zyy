@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>跳一跳</title>
+<meta name="description" content="按住蓄力、松手起跳：落在箱子中间得双倍分，连中还能翻倍。经典跳一跳网页版。">
+<meta name="theme-color" content="#f3e9f6">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <header class="topbar">
+    <div class="logo" aria-label="跳一跳"></div>
+    <div class="stats">
+      <div class="stat"><span class="k">最高分</span><b id="best">0</b></div>
+      <button class="btn icon" id="btnSound" title="音效开关">🔊</button>
+    </div>
+  </header>
+
+  <main id="stage">
+    <canvas id="game" aria-label="跳一跳游戏区"></canvas>
+
+    <div class="overlay" id="over" hidden>
+      <div class="card">
+        <h2 id="overTitle">没跳上去</h2>
+        <p class="tip" id="overTip">按住蓄力，松手起跳</p>
+        <div class="scores">
+          <div class="srow"><span>本局得分</span><b id="finalScore">0</b></div>
+          <div class="srow"><span>历史最高</span><b id="finalBest">0</b></div>
+        </div>
+        <button class="btn restart" id="btnAgain" aria-label="再来一局"></button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="tools">
+    <span class="hintline" id="hintline">按住屏幕蓄力 · 松手起跳</span>
+    <button class="btn" id="btnRestart">重新开始</button>
+  </footer>
+
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

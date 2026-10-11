@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16213c"/>
+      <stop offset="1" stop-color="#05060d"/>
+    </linearGradient>
+    <linearGradient id="l" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7fdcff"/>
+      <stop offset="1" stop-color="#4ec3f0"/>
+    </linearGradient>
+    <linearGradient id="r" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff9fd0"/>
+      <stop offset="1" stop-color="#ff6bb5"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+
+  <!-- 两条轨道 -->
+  <rect x="96" y="40" width="140" height="432" rx="20" fill="#1d4a63" opacity=".55"/>
+  <rect x="276" y="40" width="140" height="432" rx="20" fill="#5e2647" opacity=".55"/>
+
+  <!-- 音符 -->
+  <rect x="112" y="96" width="108" height="42" rx="21" fill="url(#l)"/>
+  <rect x="292" y="176" width="108" height="42" rx="21" fill="url(#r)"/>
+  <rect x="112" y="236" width="108" height="150" rx="21" fill="url(#l)" opacity=".85"/>
+  <rect x="292" y="330" width="108" height="42" rx="21" fill="url(#r)"/>
+
+  <!-- 判定线 -->
+  <rect x="76" y="424" width="360" height="10" rx="5" fill="#e8f8ff"/>
+  <rect x="76" y="420" width="360" height="18" rx="9" fill="#8fe6ff" opacity=".3"/>
+
+  <!-- 连击数字 -->
+  <text x="256" y="300" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+        font-size="86" font-weight="900" fill="#ffffff" opacity=".92">123</text>
+</svg>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>跳跃鸟 · Flappy Bird</title>
+<meta name="description" content="像素风跳跃鸟：点一下扇翅膀，穿过水管别再撞上，看看你能飞多远。">
+<meta name="theme-color" content="#4ec0ca">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      <h1>跳跃鸟</h1>
+    </div>
+    <div class="stats">
+      <div class="stat"><span class="k">最高分</span><b id="best">0</b></div>
+      <button class="btn icon" id="btnSound" title="音效开关">🔊</button>
+    </div>
+  </header>
+
+  <main id="stage">
+    <canvas id="game" aria-label="跳跃鸟游戏区"></canvas>
+
+    <div class="overlay" id="over" hidden>
+      <div class="card">
+        <img class="gotitle" src="assets/gameover.png" alt="GAME OVER" width="192" height="42">
+        <div class="medalrow">
+          <div class="medal" id="medal"><span id="medalTxt">—</span></div>
+          <div class="scores">
+            <div class="srow"><span>本局</span><b id="finalScore">0</b></div>
+            <div class="srow"><span>最高</span><b id="finalBest">0</b></div>
+          </div>
+        </div>
+        <p class="tip" id="overTip">再来一局，别撞管子</p>
+        <button class="btn primary" id="btnAgain">再来一局</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="tools">
+    <div class="chips" id="modes"></div>
+    <button class="btn" id="btnSkin">皮肤</button>
+  </footer>
+
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+/* 深海潜水艇 · 素材取自 xyx/潜水艇游戏cocos */
+:root {
+  --font: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --line: rgba(120, 235, 225, .28);
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; margin: 0; }
+
+body {
+  font-family: var(--font);
+  color: #e6fffb;
+  background: #04211f;
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+#app {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: calc(6px + env(safe-area-inset-top)) 10px calc(6px + env(safe-area-inset-bottom));
+}
+
+.topbar {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  white-space: nowrap;
+  color: #b9fff5;
+  text-shadow: 0 0 14px rgba(64, 235, 220, .5);
+}
+
+.stats { display: flex; align-items: center; gap: 7px; }
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 11px;
+  border-radius: 11px;
+  background: rgba(6, 48, 47, .72);
+  border: 1px solid var(--line);
+}
+
+.stat .k { font-size: 10px; letter-spacing: .1em; color: #7fd8cf; }
+.stat b { font-size: 16px; font-weight: 800; line-height: 1.15; font-variant-numeric: tabular-nums; }
+
+#stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+}
+
+#game { display: block; width: 100%; height: 100%; cursor: pointer; }
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 20, 22, .55);
+  backdrop-filter: blur(4px);
+  z-index: 5;
+}
+
+.overlay[hidden] { display: none; }
+
+.card {
+  width: min(310px, 100%);
+  padding: 22px 20px 18px;
+  border-radius: 20px;
+  text-align: center;
+  background: linear-gradient(180deg, #0b3b3a, #062827);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, .5);
+}
+
+.card h2 { margin: 0 0 6px; font-size: 20px; letter-spacing: .04em; color: #d9fff8; }
+.card .tip { margin: 0 0 16px; font-size: 12.5px; color: #7fd8cf; }
+
+.scores { margin-bottom: 18px; }
+
+.srow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 7px 2px;
+  font-size: 13px;
+  color: #7fd8cf;
+  border-bottom: 1px dashed rgba(120, 235, 225, .2);
+}
+
+.srow b { font-size: 22px; color: #eafffb; font-variant-numeric: tabular-nums; }
+
+.tools { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+.hintline { font-size: 12px; color: #86cfc8; letter-spacing: .02em; }
+
+.btn {
+  font-family: inherit;
+  font-size: 13px;
+  color: #d9fff8;
+  padding: 9px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(6, 48, 47, .8);
+  cursor: pointer;
+  transition: transform .12s ease, background .2s ease;
+}
+
+.btn:hover { background: rgba(14, 80, 78, .9); }
+.btn:active { transform: scale(.96); }
+.btn.icon { padding: 8px 10px; font-size: 14px; line-height: 1; }
+
+.btn.primary {
+  color: #04302e;
+  font-weight: 800;
+  border-color: transparent;
+  background: linear-gradient(180deg, #8ef0e2, #35c3b0);
+  box-shadow: 0 4px 0 #1c8d7f;
+}
+
+.btn.primary:active { transform: translateY(2px); box-shadow: 0 2px 0 #1c8d7f; }
+
+@media (max-width: 400px) {
+  .topbar h1 { font-size: 14px; }
+  .stat { padding: 3px 8px; }
+  .stat b { font-size: 15px; }
+  .hintline { display: none; }
+}

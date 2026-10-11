@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>隐形人跑酷</title>
+<meta name="description" content="黑白手绘风的火柴人跑酷：跳过尖刺、踩蹦床、躲活动平台，拿到钥匙开门过关。">
+<meta name="theme-color" content="#f7f7f4">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <header class="topbar">
+    <h1>隐形人跑酷</h1>
+    <div class="stats">
+      <div class="stat"><span class="k">房间</span><b id="room">1/3</b></div>
+      <div class="stat"><span class="k">用时</span><b id="time">0.0</b></div>
+      <div class="stat"><span class="k">最佳</span><b id="best">—</b></div>
+      <button class="btn icon" id="btnSound" title="音效开关">🔊</button>
+    </div>
+  </header>
+
+  <main id="stage">
+    <canvas id="game" aria-label="跑酷游戏区"></canvas>
+
+    <div class="pad" id="pad">
+      <button class="pbtn" id="btnLeft" aria-label="左">◀</button>
+      <button class="pbtn" id="btnRight" aria-label="右">▶</button>
+      <button class="pbtn jump" id="btnJump" aria-label="跳">跳</button>
+    </div>
+
+    <div class="overlay" id="over" hidden>
+      <div class="card">
+        <h2 id="overTitle">全部通关</h2>
+        <p class="tip" id="overTip">火柴人跑完了</p>
+        <div class="scores">
+          <div class="srow"><span>总用时</span><b id="finalTime">0.0s</b></div>
+          <div class="srow"><span>历史最佳</span><b id="finalBest">—</b></div>
+        </div>
+        <button class="btn primary" id="btnAgain">再来一次</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="tools">
+    <span class="hintline" id="hintline">电脑：← → 移动，空格/↑ 跳 · 手机：用左下角按钮</span>
+    <button class="btn" id="btnRestart">重开本关</button>
+  </footer>
+
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

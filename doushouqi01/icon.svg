@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b2b45"/>
+      <stop offset="1" stop-color="#0a1220"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7fb9f2"/>
+      <stop offset="1" stop-color="#4a90e2"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f08b7d"/>
+      <stop offset="1" stop-color="#e2574a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+
+  <!-- 四张牌 -->
+  <g>
+    <rect x="52" y="96" width="176" height="176" rx="26" fill="#16243c" stroke="#2b4468" stroke-width="8"/>
+    <text x="140" y="222" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+          font-size="104" font-weight="800" fill="#40628f">?</text>
+
+    <rect x="284" y="96" width="176" height="176" rx="26" fill="url(#red)"/>
+    <g fill="#ffffff" opacity=".92">
+      <ellipse cx="372" cy="170" rx="46" ry="42"/>
+      <ellipse cx="340" cy="120" rx="22" ry="20"/>
+      <ellipse cx="404" cy="120" rx="22" ry="20"/>
+      <ellipse cx="372" cy="196" rx="26" ry="18"/>
+    </g>
+    <ellipse cx="372" cy="168" rx="30" ry="26" fill="#e2574a"/>
+    <ellipse cx="352" cy="120" rx="14" ry="12" fill="#e2574a"/>
+    <ellipse cx="392" cy="120" rx="14" ry="12" fill="#e2574a"/>
+    <circle cx="358" cy="160" r="7" fill="#ffffff"/>
+    <circle cx="386" cy="160" r="7" fill="#ffffff"/>
+
+    <rect x="52" y="292" width="176" height="176" rx="26" fill="url(#blue)"/>
+    <g fill="#ffffff" opacity=".9">
+      <path d="M140 330 C 108 330 88 356 88 386 C 88 420 112 446 140 446 C 168 446 192 420 192 386 C 192 356 172 330 140 330 Z"/>
+    </g>
+    <ellipse cx="140" cy="388" rx="42" ry="40" fill="#4a90e2"/>
+    <circle cx="124" cy="380" r="8" fill="#ffffff"/>
+    <circle cx="156" cy="380" r="8" fill="#ffffff"/>
+    <ellipse cx="140" cy="404" rx="14" ry="10" fill="#ffffff" opacity=".8"/>
+
+    <rect x="284" y="292" width="176" height="176" rx="26" fill="#16243c" stroke="#2b4468" stroke-width="8"/>
+    <text x="372" y="418" text-anchor="middle" font-family="'PingFang SC','Microsoft YaHei',sans-serif"
+          font-size="104" font-weight="800" fill="#40628f">?</text>
+  </g>
+</svg>

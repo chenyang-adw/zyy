@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4ec0ca"/>
+      <stop offset="0.75" stop-color="#4ec0ca"/>
+      <stop offset="1" stop-color="#7ed0d6"/>
+    </linearGradient>
+    <linearGradient id="pipe" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5aa22a"/>
+      <stop offset="0.28" stop-color="#c0dd71"/>
+      <stop offset="0.62" stop-color="#98ba53"/>
+      <stop offset="1" stop-color="#3f7a18"/>
+    </linearGradient>
+    <linearGradient id="grass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5aa22a"/>
+      <stop offset="0.5" stop-color="#8fd44a"/>
+      <stop offset="1" stop-color="#4c9a22"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#sky)"/>
+
+  <g fill="#e8fbfd" opacity=".85">
+    <ellipse cx="118" cy="112" rx="52" ry="26"/>
+    <ellipse cx="158" cy="120" rx="40" ry="20"/>
+    <ellipse cx="392" cy="150" rx="46" ry="22"/>
+    <ellipse cx="356" cy="158" rx="32" ry="16"/>
+  </g>
+
+  <g>
+    <rect x="336" y="196" width="0" height="0" fill="none"/>
+    <rect x="330" y="186" width="92" height="30" rx="6" fill="url(#pipe)" stroke="#543847" stroke-width="6"/>
+    <rect x="338" y="216" width="76" height="140" fill="url(#pipe)" stroke="#543847" stroke-width="6"/>
+    <rect x="330" y="356" width="92" height="30" rx="6" fill="url(#pipe)" stroke="#543847" stroke-width="6"/>
+    <rect x="338" y="386" width="76" height="72" fill="url(#pipe)" stroke="#543847" stroke-width="6"/>
+  </g>
+
+  <rect x="0" y="452" width="512" height="60" fill="#ded895"/>
+  <rect x="0" y="442" width="512" height="18" fill="url(#grass)"/>
+  <rect x="0" y="434" width="512" height="9" fill="#543847"/>
+
+  <g transform="translate(190 280) rotate(-12)">
+    <ellipse cx="0" cy="0" rx="74" ry="58" fill="#f7d51d" stroke="#543847" stroke-width="8"/>
+    <path d="M-30 8 q30 34 62 6 q-30 48 -62 -6z" fill="#f0a92c" stroke="#543847" stroke-width="7"/>
+    <ellipse cx="34" cy="-8" rx="21" ry="20" fill="#ffffff" stroke="#543847" stroke-width="7"/>
+    <circle cx="41" cy="-8" r="8" fill="#2b2b2b"/>
+    <path d="M-6 24 l58 12 l-22 15 l-32 -12z" fill="#ffffff" stroke="#543847" stroke-width="7"/>
+    <path d="M-62 -12 q-28 -22 -48 -6 q24 4 32 22z" fill="#f0a92c" stroke="#543847" stroke-width="7"/>
+  </g>
+</svg>
