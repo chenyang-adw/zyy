@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>水果消消乐</title>
+<meta name="description" content="水果消消乐：点水果放进下方格子，三个一样自动消除，格子满了就输。">
+<meta name="theme-color" content="#fff4e6">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-512.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="head">
+    <h1>水果消消乐</h1>
+    <p class="sub">点水果放进下面的格子 · 三个一样自动消掉 · 格子满了就输</p>
+  </header>
+
+  <section class="stats">
+    <div class="stat"><span class="k">关卡</span><b id="level">1</b></div>
+    <div class="stat"><span class="k">剩余</span><b id="left">0</b></div>
+    <div class="stat"><span class="k">已消</span><b id="cleared">0</b></div>
+    <div class="stat"><span class="k">最高关卡</span><b id="best">1</b></div>
+  </section>
+
+  <section class="stage" id="stage">
+    <div class="pile" id="pile"></div>
+  </section>
+
+  <section class="tray" id="tray"></section>
+
+  <section class="row props">
+    <button type="button" class="btn" id="undoBtn">撤销 <b id="undoN">1</b></button>
+    <button type="button" class="btn" id="shuffleBtn">洗牌 <b id="shuffleN">1</b></button>
+    <button type="button" class="btn" id="popBtn">移出 <b id="popN">1</b></button>
+    <button type="button" class="btn ghost" id="restartBtn">重开本关</button>
+    <button type="button" class="btn ghost" id="soundBtn" title="音效开关">音效：开</button>
+  </section>
+
+  <div class="overlay" id="overlay">
+    <div class="ov-card">
+      <div class="ov-emoji" id="ovEmoji">🍎</div>
+      <p class="ov-title" id="ovTitle">水果消消乐</p>
+      <p class="ov-sub" id="ovSub">点水果放进下面 7 个格子，三个一样就消掉；格子满了就闯关失败。</p>
+      <button type="button" class="btn primary" id="ovBtn">开始游戏</button>
+      <p class="ov-tip" id="ovTip"></p>
+    </div>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff4e6"/>
+      <stop offset="1" stop-color="#ffe0e6"/>
+    </linearGradient>
+    <linearGradient id="ap" x1="0.25" y1="0.05" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#ff7b72"/>
+      <stop offset="0.5" stop-color="#f03e3e"/>
+      <stop offset="1" stop-color="#c1121f"/>
+    </linearGradient>
+    <linearGradient id="lf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8ce99a"/>
+      <stop offset="1" stop-color="#2f9e44"/>
+    </linearGradient>
+    <linearGradient id="st" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a9744f"/>
+      <stop offset="1" stop-color="#6b4423"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 圆角底 -->
+  <rect width="64" height="64" rx="15" fill="url(#bg)"/>
+
+  <!-- 苹果整体缩进一点，留出边距 -->
+  <g transform="translate(32 32) scale(.84) translate(-32 -31)">
+
+  <!-- 苹果身体 -->
+  <path d="M32 21.5c-4.4-6.4-13.6-7.6-18.4-1.2C8.2 27 10.6 40.4 17.4 48.2c4.3 4.9 8.6 3.7 11 3.7 2.2 0 2.2-.9 3.6-.9 1.4 0 1.4.9 3.6.9 2.4 0 6.7 1.2 11-3.7 6.8-7.8 9.2-21.2 3.8-27.9-4.8-6.4-14-5.2-18.4 1.2z"
+        fill="url(#ap)"/>
+
+  <!-- 高光 -->
+  <ellipse cx="22.5" cy="27" rx="5.2" ry="7.2" fill="#ffffff" opacity=".30" transform="rotate(-22 22.5 27)"/>
+  <ellipse cx="19.5" cy="24.5" rx="2.1" ry="3" fill="#ffffff" opacity=".45" transform="rotate(-22 19.5 24.5)"/>
+
+  <!-- 果柄 -->
+  <path d="M31.4 20.8c.3-3.6-.4-6.6-2-8.8" fill="none" stroke="url(#st)" stroke-width="3.1" stroke-linecap="round"/>
+
+  <!-- 叶子 -->
+  <path d="M32.6 13.6c3.2-4.6 8.6-6.2 13.4-5.4.6 5.2-2.2 10.4-7 12.3-2.9 1.2-5.6.9-7.4-.3 1.1-2.2 1.4-4.4 1-6.6z"
+        fill="url(#lf)"/>
+  <path d="M33.6 18.6c2.8-2.6 6.4-4.2 10.4-4.6" fill="none" stroke="#ffffff" stroke-width="1.1" opacity=".45" stroke-linecap="round"/>
+  </g>
+</svg>

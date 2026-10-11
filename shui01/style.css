@@ -1,0 +1,230 @@
+/* ============================================================
+ *  水果消消乐 · 样式
+ * ============================================================ */
+
+* { box-sizing: border-box; }
+
+:root {
+  --bg1: #fff6ec;
+  --bg2: #ffe6ea;
+  --panel: #ffffff;
+  --line: #f0dfd6;
+  --line-strong: #e6cdc2;
+  --text: #3b2b2b;
+  --muted: #9a8078;
+  --accent: #f03e3e;
+  --accent-2: #ff922b;
+  --shadow: 0 10px 26px rgba(140, 80, 60, .14);
+  --radius: 16px;
+  --tile: 44px;                 /* 由 JS 按屏幕算好 */
+  --font: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  padding: 14px 14px 20px;
+  background: linear-gradient(180deg, var(--bg1), var(--bg2));
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-text-size-adjust: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.wrap { max-width: 720px; margin: 0 auto; }
+
+/* ---------- 标题 ---------- */
+.head { text-align: center; margin-bottom: 10px; }
+.head h1 { margin: 0; font-size: 24px; font-weight: 800; letter-spacing: .02em; }
+.head .sub { margin: 5px 0 0; font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+/* ---------- 数据 ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.stat {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 7px 8px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(150, 100, 80, .07);
+}
+
+.stat .k { display: block; font-size: 11px; color: var(--muted); }
+.stat b { font-size: 18px; font-weight: 700; }
+
+/* ---------- 堆叠区 ---------- */
+.stage {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius);
+  background:
+    radial-gradient(70% 60% at 20% 12%, rgba(255, 255, 255, .85), transparent 70%),
+    linear-gradient(180deg, #fffdfa, #fff3f4);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.pile { position: absolute; inset: 0; }
+
+/* ---------- 水果牌 ---------- */
+.tile {
+  position: absolute;
+  width: var(--tile);
+  height: var(--tile);
+  left: calc(var(--tile) * var(--x));
+  top: calc(var(--tile) * var(--y));
+  border-radius: 22%;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  box-shadow: 0 3px 8px rgba(150, 100, 80, .16), inset 0 -2px 0 rgba(150, 100, 80, .06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--tile) * .62);
+  line-height: 1;
+  cursor: pointer;
+  transition: transform .14s ease, box-shadow .14s ease, opacity .16s ease;
+  will-change: transform;
+}
+
+.tile.free:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 8px 16px rgba(150, 100, 80, .22); }
+.tile.free:active { transform: scale(.94); }
+
+/* 被压住的牌：罩一层阴影 */
+.tile.blocked { cursor: default; }
+.tile.blocked::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(60, 30, 20, .34);
+}
+.tile.blocked:hover { transform: none; }
+
+/* 被点走的那一张 */
+.tile.picked { transform: scale(.3); opacity: 0; pointer-events: none; }
+
+/* ---------- 底部格子 ---------- */
+.tray {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.slot {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 22%;
+  border: 1.5px dashed var(--line-strong);
+  background: rgba(255, 255, 255, .6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(16px, 6.2vw, 34px);
+  line-height: 1;
+  transition: background .16s ease, border-color .16s ease;
+}
+
+.slot.filled {
+  border-style: solid;
+  border-color: transparent;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(150, 100, 80, .18);
+  animation: pop .18s cubic-bezier(.2, 1.4, .4, 1) both;
+}
+
+.slot.clearing { animation: clearPop .30s ease both; }
+
+.tray.danger .slot { border-color: #f08a8a; }
+
+@keyframes pop { from { transform: scale(.4); opacity: .3; } to { transform: none; opacity: 1; } }
+@keyframes clearPop {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.22); background: #fff3bf; }
+  100% { transform: scale(.2); opacity: 0; }
+}
+
+/* ---------- 道具按钮 ---------- */
+.row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.props { margin-top: 12px; }
+
+.btn {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+  transition: transform .14s ease, box-shadow .14s ease, opacity .16s ease;
+  box-shadow: 0 3px 8px rgba(150, 100, 80, .08);
+}
+
+.btn b { font-weight: 700; color: var(--accent); margin-left: 2px; }
+.btn:hover { transform: translateY(-1px); }
+.btn:disabled { opacity: .42; cursor: not-allowed; transform: none; }
+.btn.ghost { color: var(--muted); }
+
+.btn.primary {
+  border-color: transparent;
+  color: #fff;
+  font-weight: 600;
+  padding: 11px 24px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 8px 20px rgba(240, 62, 62, .30);
+}
+.btn.primary b { color: #fff; }
+
+/* ---------- 覆盖层 ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(60, 30, 25, .34);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.overlay[hidden] { display: none; }
+
+.ov-card {
+  width: 100%;
+  max-width: 340px;
+  padding: 22px 20px;
+  border-radius: 20px;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0 18px 50px rgba(80, 40, 30, .28);
+  animation: pop .22s cubic-bezier(.2, 1.3, .4, 1) both;
+}
+
+.ov-emoji { font-size: 42px; line-height: 1; }
+.ov-title { margin: 8px 0 6px; font-size: 19px; font-weight: 700; }
+.ov-sub { margin: 0 0 16px; font-size: 12.5px; color: var(--muted); line-height: 1.7; }
+.ov-tip { margin: 12px 0 0; font-size: 11.5px; color: var(--muted); min-height: 14px; }
+
+@media (max-width: 420px) {
+  .head h1 { font-size: 20px; }
+  .stat b { font-size: 16px; }
+  .head .sub { font-size: 11.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

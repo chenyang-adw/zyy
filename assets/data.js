@@ -84,6 +84,14 @@ window.SITE_CONFIG = {
         tag: '小游戏',
         icon: 'tan01/icon.svg',
         color: '#22c55e'
+      },
+      {
+        name: '水果消消乐',
+        url: 'shui01/',
+        desc: '点水果凑三个，格子满了就输',
+        tag: '小游戏',
+        icon: 'shui01/icon.svg',
+        color: '#f03e3e'
     }
   ]
 };
