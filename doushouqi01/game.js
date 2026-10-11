@@ -521,8 +521,8 @@
     ev.preventDefault();
     Sound.unlock();
     const rect = cv.getBoundingClientRect();
-    const s = view.s;
-    click((ev.clientX - rect.left) / s, (ev.clientY - rect.top) / s);
+    /* 棋盘几何本身就是 CSS 像素，这里不能再除 view.s（之前除了一次导致点偏） */
+    click(ev.clientX - rect.left, ev.clientY - rect.top);
   });
   stageEl.addEventListener('contextmenu', e => e.preventDefault());
 
@@ -556,7 +556,12 @@
     get win() { return G.win; },
     get lose() { return G.lose; },
     view, newGame, aiStep, render,
+    boardGeom,
     clickAt(x, y) { click(x, y); },
+    cardCenter(i) {
+      const g = boardGeom(), step = g.cell + g.gap;
+      return { x: g.x + (i % N) * step + g.cell / 2, y: g.y + Math.floor(i / N) * step + g.cell / 2 };
+    },
     /* 测试用：直接把牌面摆成指定样子 */
     setup(list) {
       G.cards = list.map(function (v) {

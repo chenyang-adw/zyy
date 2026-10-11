@@ -26,11 +26,11 @@
   <main id="stage">
     <canvas id="game" aria-label="跑酷游戏区"></canvas>
 
-    <div class="pad" id="pad">
+    <div class="pad-left">
       <button class="pbtn" id="btnLeft" aria-label="左">◀</button>
       <button class="pbtn" id="btnRight" aria-label="右">▶</button>
-      <button class="pbtn jump" id="btnJump" aria-label="跳">跳</button>
     </div>
+    <button class="pbtn jump pad-jump" id="btnJump" aria-label="跳">跳</button>
 
     <div class="overlay" id="over" hidden>
       <div class="card">
@@ -46,9 +46,11 @@
   </main>
 
   <footer class="tools">
-    <span class="hintline" id="hintline">电脑：← → 移动，空格/↑ 跳 · 手机：用左下角按钮</span>
+    <span class="hintline" id="hintline">电脑：← → 移动，空格/↑ 跳 · 手机：左下移动、右下跳</span>
     <button class="btn" id="btnRestart">重开本关</button>
   </footer>
+
+  <p class="site-note" style="margin:0;font-size:11px;line-height:1.4;opacity:.55;text-align:center">本站仅用于学习交流 · 案例展示</p>
 
 </div>
 

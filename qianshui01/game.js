@@ -12,12 +12,13 @@
   'use strict';
 
   const DW = 720;                       // 设计宽度
-  const WALL_W = 168;                   // 两侧隧道壁宽度
+  const WALL_W = 118;                   // 两侧隧道壁宽度（变窄 → 航道更宽好躲）
   const ROAD_L = WALL_W, ROAD_R = DW - WALL_W;
   const SUBB = 116;                     // 玩家潜艇尺寸
-  const ENEMY_W = 210, ENEMY_H = 70;
-  const BASE_SPEED = 132;               // 源码 ObjectMovement.movementSpeed = 128
+  const ENEMY_W = 158, ENEMY_H = 58;
+  const BASE_SPEED = 118;               // 源码 ObjectMovement.movementSpeed = 128
   const SPEED_STEP = 0.2, SPEED_EVERY = 2;
+  const MAX_TIME_SCALE = 2.6;           // 加速上限（原来 3.4 太难躲）
   const LASER_TIME = 5;
   const PLAYER_Y = 0.24;                // 潜艇在屏幕上的纵向位置
 
@@ -151,11 +152,16 @@
 
   /* ---------------- 生成 ---------------- */
   function spawnEnemy() {
-    const x = ROAD_L + 60 + Math.random() * (ROAD_R - ROAD_L - 120);
+    /* 敌舰贴着某一侧生成，另一侧一定留出通路，不然中间生成是必死 */
+    const w = ROAD_R - ROAD_L;
+    const band = w * 0.26;
+    const left = Math.random() < 0.5;
+    const x = left ? ROAD_L + 50 + Math.random() * band
+                   : ROAD_R - 50 - Math.random() * band;
     G.enemies.push({
       x: x, y: -ENEMY_H, w: ENEMY_W, h: ENEMY_H,
-      sp: BASE_SPEED * G.timeScale * (0.9 + Math.random() * 0.35),
-      drift: (Math.random() * 2 - 1) * 30,
+      sp: BASE_SPEED * G.timeScale * (0.92 + Math.random() * 0.22),
+      drift: (left ? -1 : 1) * (10 + Math.random() * 20),   // 只在靠边那侧小幅摆动
       passed: false
     });
   }
@@ -181,7 +187,7 @@
       G.speedT += dt;
       if (G.speedT >= SPEED_EVERY) {
         G.speedT -= SPEED_EVERY;
-        G.timeScale = Math.min(3.4, G.timeScale + SPEED_STEP);
+        G.timeScale = Math.min(MAX_TIME_SCALE, G.timeScale + SPEED_STEP);
         updateHud();
       }
       /* 距离分 */
@@ -194,7 +200,7 @@
       G.spawnT -= dt;
       if (G.spawnT <= 0) {
         spawnEnemy();
-        G.spawnT = Math.max(0.55, (1.35 - (G.timeScale - 1) * 0.16)) * (0.8 + Math.random() * 0.5);
+        G.spawnT = Math.max(0.95, (1.7 - (G.timeScale - 1) * 0.2)) * (0.9 + Math.random() * 0.45);
       }
       G.itemT -= dt;
       if (G.itemT <= 0) { spawnItem(); G.itemT = 3.4 + Math.random() * 3.4; }

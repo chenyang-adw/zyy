@@ -75,14 +75,21 @@ body {
 
 #game { display: block; width: 100%; height: 100%; }
 
-/* 手机上的操作按钮 */
-.pad {
+/* 手机上的操作按钮：方向在左下、跳跃在右下 */
+.pad-left {
   position: absolute;
   left: 10px;
   bottom: 10px;
   display: flex;
   gap: 8px;
   align-items: flex-end;
+  z-index: 4;
+}
+
+.pad-jump {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
   z-index: 4;
 }
 
