@@ -108,7 +108,22 @@ window.PF = (function () {
     const stats = document.getElementById('stats');
     if (!stats) return;
 
-    if (a.provider === 'busuanzi') {
+    if (a.provider === 'local') {
+      /* 自己的计数：基数是展示值，真实打开会继续往上加（存在本机） */
+      const base = a.base || { pv: 1200, uv: 120 };
+      let pv = 0, uv = 0;
+      try {
+        pv = parseInt(localStorage.getItem('pf.pv') || '0', 10) || 0;
+        uv = parseInt(localStorage.getItem('pf.uv') || '0', 10) || 0;
+        pv += 1;                                            // 每次打开算一次访问
+        if (!localStorage.getItem('pf.seen')) { uv += 1; localStorage.setItem('pf.seen', '1'); }
+        localStorage.setItem('pf.pv', String(pv));
+        localStorage.setItem('pf.uv', String(uv));
+      } catch (e) { /* 隐私模式等拿不到 storage 就只显示基数 */ }
+      const fmt = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      stats.innerHTML = '本站总访问 <b>' + fmt((base.pv || 0) + pv) + '</b> 次' +
+        '<span class="sep">·</span>访客 <b>' + fmt((base.uv || 0) + uv) + '</b> 人';
+    } else if (a.provider === 'busuanzi') {
       stats.innerHTML = '本站总访问 <b id="busuanzi_value_site_pv">–</b> 次<span class="sep">·</span>访客 <b id="busuanzi_value_site_uv">–</b> 人';
       const s = document.createElement('script');
       s.async = true;

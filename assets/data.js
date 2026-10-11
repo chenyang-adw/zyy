@@ -33,11 +33,17 @@ window.SITE_CONFIG = {
   },
 
   /* ---------- 3. 访问统计 ----------
-   * 默认用「不蒜子」，免注册，开箱即用。
-   * 想换成 Umami / 51.la：把 provider 改成 'umami' 并填入你的 ID 即可。
+   * provider 可选：
+   *   'local'    → 本站自己计数（不用第三方，微信里也能显示）。
+   *                base 是「展示基数」，想让数字更大直接改这两个数就行，
+   *                真实访问会在这个基数上继续累加。
+   *   'busuanzi' → 不蒜子（第三方，国内偶尔加载不出来）
+   *   'umami'    → 自建统计，需要填下面的 umamiId
+   *   'none'     → 不显示
    */
   analytics: {
-    provider: 'busuanzi', // 'busuanzi' | 'umami' | 'none'
+    provider: 'local',
+    base: { pv: 13672, uv: 1286 },  // 展示基数：访问次数 / 访客人数
     umamiId: '',          // 例：'a1b2c3d4-e5f6-7890-abcd-ef1234567890'
     umamiHost: 'https://analytics.umami.is'
   },
@@ -189,5 +195,41 @@ window.SITE_CONFIG = {
       icon: 'huangjin01/icon.svg',
       color: '#f5b21f'
     }
-  ]
+  ],
+
+  /* ---------- 6. 首页案例区周围的宣传内容（想改文案改这里） ---------- */
+  home: {
+    /* 数据条：auto 会自动统计（sites=站点总数、games=小游戏数量），也可用 n 写死 */
+    stats: [
+      { auto: 'sites', k: '个上线案例' },
+      { auto: 'games', k: '款自研小游戏' },
+      { n: '100%', k: '源码交付' },
+      { n: '7×24', k: '随时响应' }
+    ],
+
+    /* 更多定制方向（tint 决定图标底色：blue / orange / green / purple） */
+    directions: {
+      title: '更多定制方向',
+      desc: '商务点单 · 餐饮科技 · 应用程序 · 个人网页',
+      items: [
+        { icon: '📋', tint: 'blue',   name: '商务点单',       desc: '企业团餐 · 预约订餐 · 批量下单' },
+        { icon: '☕', tint: 'orange', name: '餐饮科技小程序', desc: '点餐排队 · 会员储值 · 外卖配送' },
+        { icon: '📱', tint: 'blue',   name: '应用程序 App',   desc: '安卓 iOS · 桌面工具 · 管理软件' },
+        { icon: '🌐', tint: 'green',  name: '个人网页定制',   desc: '个人主页 · 作品集 · 简历名片' }
+      ]
+    },
+
+    /* 电竞工作室案例（图片放 assets/cases/） */
+    cases: [
+      { img: 'assets/cases/guanjia.jpg', name: '评论获客后台', desc: '视频采集 · 直播/群聊监控 · 评论抓取 · 线索一键导出表格' },
+      { img: 'assets/cases/esports.jpg', name: '电竞工作室菜单中心', desc: '菜单分类专区 · 点单与客服入口 · 电脑端手机端自适应' }
+    ],
+
+    /* 结尾引导 */
+    cta: {
+      title: '能点开、能用的东西才叫作品。',
+      desc: '小程序、小游戏、点单系统、行业后台、App 与个人网站，从需求梳理到上线部署一个人做完，源码交付、随时加功能。',
+      chips: ['微信小程序', '小游戏', '点单系统', '电竞工作室管理', '商务点单', '餐饮科技', '应用程序', '网站与后台', '个人网页定制']
+    }
+  }
 };

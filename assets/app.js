@@ -156,13 +156,19 @@
     wrap.innerHTML = groups
       .filter((g) => g.items.length)
       .map((g) =>
-        '<section class="section">' +
-          '<div class="section-head">' +
-            '<h2>' + esc(g.sec.title) + '<span class="section-count">' + g.items.length + ' 个</span></h2>' +
-            (g.sec.desc ? '<p class="section-desc">' + esc(g.sec.desc) + '</p>' : '') +
-          '</div>' +
-          '<div class="grid">' +
-            g.items.map((s) => cardHtml(s, idx++)).join('') +
+        '<section class="section cases-band">' +
+          '<div class="band-inner">' +
+            '<div class="section-head">' +
+              '<h2>' + esc(g.sec.title) + '<span class="section-count">' + g.items.length + ' 个</span></h2>' +
+              '<p class="section-desc">' + esc(g.sec.desc || '左右滑动看更多 · 点开就能玩') + '</p>' +
+            '</div>' +
+            '<div class="carousel-wrap">' +
+              '<button class="car-nav prev" type="button" aria-label="前一张">‹</button>' +
+              '<div class="carousel" id="carousel">' +
+                g.items.map((s) => cardHtml(s, idx++)).join('') +
+              '</div>' +
+              '<button class="car-nav next" type="button" aria-label="后一张">›</button>' +
+            '</div>' +
           '</div>' +
         '</section>'
       ).join('');
@@ -171,6 +177,77 @@
     if (!items.length) empty.textContent = keyword ? '没有匹配「' + keyword + '」的站点' : '这个分类下还没有站点';
 
     wrap.querySelectorAll('.card').forEach((el) => loadIcon(el));
+    bindCarousel();
+    renderPromo(items.length !== (cfg.sites || []).length);
+  }
+
+  /* 横向滑动的案例墙：桌面按箭头翻，手机直接滑 */
+  function bindCarousel() {
+    const box = $('carousel');
+    if (!box) return;
+    const wrap = box.parentElement;
+    const prev = wrap.querySelector('.car-nav.prev');
+    const next = wrap.querySelector('.car-nav.next');
+    const step = () => Math.max(220, Math.round(box.clientWidth * 0.8));
+    const sync = () => {
+      const max = box.scrollWidth - box.clientWidth - 4;
+      const hide = box.scrollWidth <= box.clientWidth + 4;
+      prev.hidden = hide || box.scrollLeft <= 2;
+      next.hidden = hide || box.scrollLeft >= max;
+    };
+    if (prev) prev.onclick = () => { box.scrollBy({ left: -step(), behavior: 'smooth' }); };
+    if (next) next.onclick = () => { box.scrollBy({ left: step(), behavior: 'smooth' }); };
+    box.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+  }
+
+  /* ---------- 案例区上下的宣传内容（数据 / 电竞案例 / 能做什么 / 结尾） ---------- */
+  function renderPromo(filtering) {
+    const box = $('promo');
+    if (!box) return;
+    const h = cfg.home || {};
+    const games = (cfg.sites || []).filter((s) => (s.tag || '') === '小游戏').length;
+
+    const stats = (h.stats || []).map((it) => {
+      let n = it.n;
+      if (it.auto === 'sites') n = (cfg.sites || []).length;
+      if (it.auto === 'games') n = games;
+      return '<div class="promo-stat"><b>' + esc(String(n == null ? '—' : n)) + '</b><span>' + esc(it.k || '') + '</span></div>';
+    }).join('');
+
+    const dir = h.directions || {};
+    const services = (dir.items || []).map((s) =>
+      '<div class="promo-service">' +
+        '<i class="tint-' + esc(s.tint || 'blue') + '">' + esc(s.icon || '') + '</i>' +
+        '<b>' + esc(s.name || '') + '</b><span>' + esc(s.desc || '') + '</span></div>'
+    ).join('');
+
+    const cases = (h.cases || []).map((c) =>
+      '<figure class="promo-case">' +
+        '<img src="' + esc(PF.safeUrl(c.img) || '') + '" alt="' + esc(c.name || '') + '" loading="lazy">' +
+        '<figcaption><b>' + esc(c.name || '') + '</b>' + esc(c.desc || '') + '</figcaption>' +
+      '</figure>'
+    ).join('');
+
+    const cta = h.cta || {};
+    box.innerHTML =
+      (stats ? '<section class="promo-stats">' + stats + '</section>' : '') +
+      (cases ? '<section class="section"><div class="section-head"><h2>电竞工作室管理<span class="section-count">案例</span></h2>' +
+        '<p class="section-desc">派单 · 陪玩代练 · 获客 · 数据看板</p></div>' +
+        '<div class="promo-cases">' + cases + '</div></section>' : '') +
+      (services ? '<section class="section"><div class="section-head"><h2>' + esc(dir.title || '更多定制方向') + '</h2>' +
+        '<p class="section-desc">' + esc(dir.desc || '') + '</p></div>' +
+        '<div class="promo-services">' + services + '</div></section>' : '') +
+      (cta.title ? '<section class="promo-cta">' +
+        '<h3>' + esc(cta.title) + '</h3>' +
+        '<p>' + esc(cta.desc || '') + '</p>' +
+        (cta.chips ? '<div class="promo-chips">' + cta.chips.map((c) => '<span>' + esc(c) + '</span>').join('') + '</div>' : '') +
+        '<nav class="contacts" id="promo-contacts"></nav></section>' : '');
+
+    PF.renderContacts(document.getElementById('promo-contacts'), cfg.contacts);
+    /* 搜索/筛选时先把这些宣传块收起来，专心看结果 */
+    box.style.display = filtering ? 'none' : '';
   }
 
   /* ---------- 图标：指定图 → favicon 多源降级 → 首字母 ---------- */
