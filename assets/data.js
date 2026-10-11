@@ -8,7 +8,7 @@ window.SITE_CONFIG = {
   site: {
     title: '钟意 · 作品导航',
     name: '钟意',
-    tagline: 'Web 全栈开发工程师\n掌握 React / Python / Java / MySQL / CI/CD / Docker\n网页 · 小程序 · 小游戏 · 应用定制\n只有你想不到，没有我做不到',
+    tagline: 'Web 全栈开发工程师\n掌握 React / Python / Java / MySQL / CI/CD / Docker\n网页 · 小程序 · 小游戏 · 应用定制\n让每一次交付，都更贴近你的想法',
     description: '钟意的个人主页，收录我做过的小工具、小游戏和实验项目，点开就能用。',
     // 换成你自己的域名（不要带 https://，结尾不要斜杠）
     domain: 'zhongyiya.cn',
@@ -28,7 +28,7 @@ window.SITE_CONFIG = {
 
   /* ---------- 2.5 关于我页面 ---------- */
   about: {
-    intro: '你好，我是钟意，一名 Web 全栈开发工程师。熟练掌握 React、Python、Java、MySQL、CI/CD、Docker 等技术栈；可定制网页与网站，开发小程序、小游戏及各类应用程序，从需求梳理到上线部署一条龙独立完成。只有你想不到，没有我做不到。',
+    intro: '你好，我是钟意，一名 Web 全栈开发工程师。熟练掌握 React、Python、Java、MySQL、CI/CD、Docker 等技术栈；可定制网页与网站，开发小程序、小游戏及各类应用程序，从需求梳理到上线部署一条龙独立完成。让每一次交付，都更贴近你的想法。',
     skills: ['JavaScript / TypeScript', 'React / Vue', 'Node.js / Express', 'Python', 'Java', 'MySQL / Redis', 'Docker / Nginx', 'CI/CD', 'HTML / CSS', 'Vercel / 云服务部署']
   },
 
