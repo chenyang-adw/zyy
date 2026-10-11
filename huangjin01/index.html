@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>黄金矿工</title>
+<meta name="description" content="经典黄金矿工：点一下放钩子抓金块，越重拉得越慢，攒够目标金额就能进下一关。">
+<meta name="theme-color" content="#3b2412">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <header class="topbar">
+    <h1>黄金矿工</h1>
+    <div class="stats">
+      <div class="stat"><span class="k">第几关</span><b id="level">1</b></div>
+      <div class="stat"><span class="k">目标</span><b id="goal">100</b></div>
+      <div class="stat wide"><span class="k">金钱</span><b id="money">0</b></div>
+      <div class="stat"><span class="k">剩余时间</span><b id="time">45</b></div>
+      <button class="btn icon" id="btnSound" title="音效开关">🔊</button>
+    </div>
+  </header>
+
+  <main id="stage">
+    <canvas id="game" aria-label="黄金矿工游戏区"></canvas>
+
+    <div class="overlay" id="over" hidden>
+      <div class="card">
+        <h2 id="overTitle">过关</h2>
+        <p class="tip" id="overTip"></p>
+        <div class="scores">
+          <div class="srow"><span>本关目标</span><b id="fGoal">100</b></div>
+          <div class="srow"><span>累计金钱</span><b id="fMoney">0</b></div>
+        </div>
+        <button class="btn primary" id="btnAgain">再来一次</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="tools">
+    <button class="btn" id="btnDyn">💥 炸药 <b id="dynNum">2</b></button>
+    <span class="hintline">点屏幕放钩爪 · 炸药可以丢掉抓到的重物</span>
+    <button class="btn" id="btnRestart">重开本关</button>
+  </footer>
+
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

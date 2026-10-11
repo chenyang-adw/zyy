@@ -180,6 +180,14 @@ window.SITE_CONFIG = {
       tag: '小游戏',
       icon: 'yinyue01/icon.svg',
       color: '#4ec3f0'
+    },
+    {
+      name: '黄金矿工',
+      url: 'huangjin01/',
+      desc: '放钩抓金块，越重拉得越慢',
+      tag: '小游戏',
+      icon: 'huangjin01/icon.svg',
+      color: '#f5b21f'
     }
   ]
 };
